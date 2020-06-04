@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="792a497c-f5f4-4743-b4f9-b0a894d04a39" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
@@ -9,6 +10,9 @@
       <change beforePath="$PROJECT_DIR$/../products/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../products/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../products/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../products/pom.xml" afterDir="false" />
     </list>
+=======
+    <list default="true" id="792a497c-f5f4-4743-b4f9-b0a894d04a39" name="Default Changelist" comment="" />
+>>>>>>> master
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,7 +61,11 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+<<<<<<< HEAD
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../products" />
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+>>>>>>> master
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -103,7 +111,11 @@
       <updated>1591171738476</updated>
       <workItem from="1591171742948" duration="18000" />
       <workItem from="1591174857858" duration="840000" />
+<<<<<<< HEAD
       <workItem from="1591237415004" duration="189000" />
+=======
+      <workItem from="1591178119127" duration="501000" />
+>>>>>>> master
     </task>
     <servers />
   </component>
