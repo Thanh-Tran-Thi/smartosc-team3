@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="792a497c-f5f4-4743-b4f9-b0a894d04a39" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com.smartosc.training/AuthenticationApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../payment/src/main/java/com/smartosc/training/PaymentServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../payment/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../payment/pom.xml" afterDir="false" />
-    </list>
+    <list default="true" id="792a497c-f5f4-4743-b4f9-b0a894d04a39" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
