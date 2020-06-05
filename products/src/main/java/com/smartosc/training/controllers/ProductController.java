@@ -1,7 +1,7 @@
 package com.smartosc.training.controllers;
 
+import com.smartosc.training.dto.ProductDTO;
 import com.smartosc.training.entities.ApiResponse;
-import com.smartosc.training.entities.Product;
 import com.smartosc.training.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,11 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
-
 /**
  * products
  *
@@ -30,8 +27,7 @@ public class ProductController {
     @GetMapping
     ResponseEntity<?> getAll() {
         try {
-            List<Product> products = new ArrayList<>();
-            service.listAll().forEach(products::add);
+            List<ProductDTO> products = service.listAll();
             if (products.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
@@ -43,7 +39,7 @@ public class ProductController {
 
     @GetMapping(value = "/{id}")
     ResponseEntity<?> getById(@PathVariable(name = "id")Long id) {
-        Optional<Product> product = service.getById(id);
+        ProductDTO product = service.getById(id);
         if (product.equals(null)){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
@@ -52,26 +48,15 @@ public class ProductController {
     }
 
     @PostMapping
-    ResponseEntity<?> createNew(@Valid @RequestBody Product product){
+    ResponseEntity<?> createNew(@Valid @RequestBody ProductDTO product){
         service.save(product);
-        return new ResponseEntity<>(new ApiResponse<Product>(new Date(), product), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse<>(new Date(), product), HttpStatus.OK);
     }
 
-    @PutMapping(value = "/{id}")
-    ResponseEntity<?> update(@PathVariable(name = "id")Long id, @RequestBody Product input){
-        Optional<Product> productData = service.getById(id);
-        if (productData.isPresent()) {
-            Product product = productData.get();
-            product.setName(input.getName());
-            product.setDescription(input.getDescription());
-            product.setImage(input.getImage());
-            product.setPrice(input.getPrice());
-            product.setCategories(input.getCategories());
-            service.save(product);
-            return new ResponseEntity<>(new ApiResponse<Product>(new Date(), input), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    @PutMapping
+    ResponseEntity<?> update(@RequestBody ProductDTO input){
+        service.update(input);
+        return new ResponseEntity<>(new ApiResponse<>(new Date(), input), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/{id}")

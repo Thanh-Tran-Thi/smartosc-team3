@@ -1,11 +1,9 @@
 package com.smartosc.training.services;
 
-import com.smartosc.training.entities.Category;
-import com.smartosc.training.entities.Product;
+import com.smartosc.training.dto.CategoryDTO;
+import com.smartosc.training.dto.CategoryProductDTO;
 
 import java.util.List;
-import java.util.Optional;
-
 /**
  * products
  *
@@ -13,8 +11,8 @@ import java.util.Optional;
  * @created_at 04/06/2020 - 4:55 PM
  */
 public interface CategoryService {
-    List<Category> listAll();
-    Optional<Category> getById(Long id);
-    Category save(Category category);
-    List<Product> findAllProductByCategory(Long id);
+    List<CategoryProductDTO> listAll();
+    CategoryProductDTO getById(Long id);
+    void save(CategoryDTO category);
+    void update(CategoryProductDTO categoryProductDTO);
 }

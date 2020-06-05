@@ -1,10 +1,19 @@
 package com.smartosc.training.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.*;
+import javax.persistence.Id;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Column;
+import javax.persistence.ManyToMany;
+import javax.persistence.FetchType;
 import java.util.List;
 
 /**
@@ -17,6 +26,8 @@ import java.util.List;
 @Table(name = "category")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Category {
 
     @Id
@@ -33,4 +44,10 @@ public class Category {
 
     @ManyToMany(mappedBy = "categories", fetch = FetchType.LAZY)
     private List<Product> products;
+
+    public Category(long i, String n, String d) {
+        this.id = i;
+        this.name = n;
+        this.description = d;
+    }
 }

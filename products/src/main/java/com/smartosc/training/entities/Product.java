@@ -60,4 +60,11 @@ public class Product {
     @JoinTable(name = "product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<Category> categories;
 
+    public Product(Long i, String n, String d, String img, BigDecimal p) {
+        this.id = i;
+        this.name = n;
+        this.description = d;
+        this.image = img;
+        this.price = p;
+    }
 }
