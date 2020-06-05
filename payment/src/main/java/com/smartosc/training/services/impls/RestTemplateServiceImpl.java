@@ -1,5 +1,6 @@
 package com.smartosc.training.services.impls;
 
+
 import com.smartosc.training.dtos.APIResponse;
 import com.smartosc.training.services.RestTemplateService;
 import org.slf4j.Logger;
@@ -21,7 +22,7 @@ public class RestTemplateServiceImpl implements RestTemplateService {
 		try {
 			HttpEntity<Object> entity = new HttpEntity<>(body, headers);
 			ResponseEntity<APIResponse<T>> res = restTemplate.exchange(url, method, entity, reponseType);
-			if (res.getStatusCodeValue() >= HttpStatus.OK.value() && res.getStatusCodeValue() < HttpStatus.MULTIPLE_CHOICES.value()) {
+			if (res.getStatusCode().value() >= HttpStatus.OK.value() && res.getStatusCode().value() < HttpStatus.MULTIPLE_CHOICES.value()) {
 				return res.getBody().getData();
 			}
 			LOOGER.error(res.getBody().getMessage());
@@ -37,7 +38,7 @@ public class RestTemplateServiceImpl implements RestTemplateService {
 			HttpEntity<Object> entity = new HttpEntity<>(body, headers);
 			ParameterizedTypeReference<APIResponse<T>> reponseType = new ParameterizedTypeReference<APIResponse<T>>() {	};
 			ResponseEntity<APIResponse<T>> res = restTemplate.exchange(url, method, entity, reponseType);
-			if (res.getStatusCodeValue() >= HttpStatus.OK.value() && res.getStatusCodeValue() < HttpStatus.MULTIPLE_CHOICES.value()) {
+			if (res.getStatusCode().value() >= HttpStatus.OK.value() && res.getStatusCode().value() < HttpStatus.MULTIPLE_CHOICES.value()) {
 				return res.getBody();
 			}
 			LOOGER.error(res.getBody().getMessage());
@@ -53,7 +54,7 @@ public class RestTemplateServiceImpl implements RestTemplateService {
 		try {
 			HttpEntity<Object> entity = new HttpEntity<>(body, headers);
 			ResponseEntity<String> res = restTemplate.exchange(url, method, entity, String.class);
-			if (res.getStatusCodeValue() >= HttpStatus.OK.value() && res.getStatusCodeValue() < HttpStatus.MULTIPLE_CHOICES.value()) {
+			if (res.getStatusCode().value() >= HttpStatus.OK.value() && res.getStatusCode().value() < HttpStatus.MULTIPLE_CHOICES.value()) {
 				return res.getBody();
 			}
 			LOOGER.error(res.getBody());

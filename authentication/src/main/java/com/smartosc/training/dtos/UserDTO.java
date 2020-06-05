@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotEmpty;
+
 /**
  * smartosc-team3
  *
@@ -18,8 +20,12 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDTO extends AbstractDTO{
+    @NotEmpty(message = "User name không dc để trống")
     private String username;
+    @NotEmpty(message = "Password name không dc để trống")
     private String password;
+    @NotEmpty(message = "Full name name không dc để trống")
     private String fullname;
+    @NotEmpty(message = "Email name không dc để trống")
     private String email;
 }

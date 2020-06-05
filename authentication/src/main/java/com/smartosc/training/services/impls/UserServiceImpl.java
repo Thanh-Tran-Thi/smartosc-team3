@@ -40,8 +40,8 @@ public class UserServiceImpl implements UserService {
             UserDTO dto = new UserDTO();
             dto = modelMapper.map(userEntity.get(), UserDTO.class);
             return dto;
-        } else {
-            throw new NotFoundException("kh");
+        }else{
+            throw new NotFoundException("KHông tìm thấy dữ liệu");
         }
     }
 

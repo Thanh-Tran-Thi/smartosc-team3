@@ -22,7 +22,8 @@ import java.util.List;
  * @created_by Hieupv
  * @since 05/06/2020
  */
-@RestController(value = "/user")
+@RestController
+@RequestMapping(value = "/user")
 public class UserApi {
     @Autowired
     private UserService userService;

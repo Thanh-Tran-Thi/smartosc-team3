@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
  * @since 05/06/2020
  */
 @ControllerAdvice
-public class ControllerAdvisor extends ResponseEntityExceptionHandler {
+public class RestHandleException extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException ex, HttpHeaders headers,

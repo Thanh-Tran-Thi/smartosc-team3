@@ -1,5 +1,6 @@
 package com.smartosc.training.security.config;
 
+import com.smartosc.training.services.impls.JwtUserDetailServiceImpl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -32,16 +33,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private JWTAuthenticationEntryPoint jwtAuthenticationEntryPoint;
-	
 	@Autowired
-	private UserDetailsService jwtUserDetailService;
+	private JwtUserDetailServiceImpl userDetailsService;
 	
 	@Autowired
 	private RequestFilter requestFilter;
 	
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
-		auth.userDetailsService(jwtUserDetailService).passwordEncoder(passwordEncoder());
+		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 	}
 
 	@Bean

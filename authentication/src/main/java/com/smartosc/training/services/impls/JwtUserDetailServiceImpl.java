@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class JwtUserDetailService implements UserDetailsService {
+public class JwtUserDetailServiceImpl implements UserDetailsService {
 
     @Autowired
     private RoleService roleRepository;
@@ -29,7 +29,6 @@ public class JwtUserDetailService implements UserDetailsService {
     @SneakyThrows
     @Override
     public UserDetails loadUserByUsername(String userName) {
-
         UserDTO users = this.userRepository.findUserByUserName(userName);
 
         if (users == null || users.getStatus() == 0) {

@@ -3,7 +3,7 @@ package com.smartosc.training.security.controller;
 
 import com.smartosc.training.dtos.APIResponse;
 import com.smartosc.training.dtos.JwtRequest;
-import com.smartosc.training.services.impls.JwtUserDetailService;
+import com.smartosc.training.services.impls.JwtUserDetailServiceImpl;
 import com.smartosc.training.security.utils.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,7 +31,7 @@ public class SecurityController {
 	private JWTUtils jwtTokenUtil;
 
 	@Autowired
-	private JwtUserDetailService userDetailsService;
+	private JwtUserDetailServiceImpl userDetailsService;
 
 	@PostMapping(value = "/authenticate")
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody @Valid JwtRequest authenticationRequest) throws Exception {
@@ -55,6 +55,9 @@ public class SecurityController {
 			throw new Exception("USER_DISABLED", e);
 		} catch (BadCredentialsException e) {
 			throw new BadCredentialsException("INVALID_CREDENTIALS", e);
+		}catch (Exception e) {
+			e.printStackTrace();
+			throw new BadCredentialsException("Lỗi", e);
 		}
 	}
 }

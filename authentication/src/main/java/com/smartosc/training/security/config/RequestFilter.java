@@ -1,6 +1,6 @@
 package com.smartosc.training.security.config;
 
-import com.smartosc.training.services.impls.JwtUserDetailService;
+import com.smartosc.training.services.impls.JwtUserDetailServiceImpl;
 import com.smartosc.training.security.utils.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -18,7 +18,7 @@ import java.io.IOException;
 
 @Component
 public class RequestFilter extends OncePerRequestFilter {
-	private JwtUserDetailService jwtUserDetailService = new JwtUserDetailService();
+	private JwtUserDetailServiceImpl jwtUserDetailService = new JwtUserDetailServiceImpl();
 	
 	@Autowired
 	private JWTUtils jwtTokenUtils;
