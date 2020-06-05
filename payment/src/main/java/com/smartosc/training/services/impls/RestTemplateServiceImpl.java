@@ -29,7 +29,6 @@ public class RestTemplateServiceImpl implements RestTemplateService {
 			LOOGER.error(res.getBody().getMessage());
 			throw new RestTempalteException(res.getBody().getMessage());
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw new RestTempalteException(e.getMessage(), e);
 		}
 	}
