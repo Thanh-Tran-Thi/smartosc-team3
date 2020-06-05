@@ -34,7 +34,7 @@ public class UserApi {
     public ResponseEntity<?> findAllUser() throws NotFoundException {
         List<UserDTO> userList = new ArrayList<>();
         userList = userService.findAllUser();
-        return new ResponseEntity<>(new APIResponse<List<?>>(HttpStatus.OK.value(),"success" ,userList), HttpStatus.OK);
+        return new ResponseEntity<>(new APIResponse<List<UserDTO>>(HttpStatus.OK.value(),"success" ,userList), HttpStatus.OK);
     }
 
     @PostMapping
