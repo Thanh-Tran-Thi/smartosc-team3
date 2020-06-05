@@ -3,7 +3,7 @@ server:
 
 #api
 services:
-    hotsName : http://localhost:8004
+    hotsName : http://localhost:8001
     productAPI : /products
     categoryAPI : /categories
     userAPI : /user

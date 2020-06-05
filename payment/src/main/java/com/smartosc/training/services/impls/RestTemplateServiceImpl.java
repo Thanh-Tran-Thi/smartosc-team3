@@ -2,6 +2,7 @@ package com.smartosc.training.services.impls;
 
 
 import com.smartosc.training.dtos.APIResponse;
+import com.smartosc.training.exception.RestTempalteException;
 import com.smartosc.training.services.RestTemplateService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,9 +27,10 @@ public class RestTemplateServiceImpl implements RestTemplateService {
 				return res.getBody().getData();
 			}
 			LOOGER.error(res.getBody().getMessage());
-			throw new RestClientException(res.getBody().getMessage());
+			throw new RestTempalteException(res.getBody().getMessage());
 		} catch (Exception e) {
-			throw new RestClientException(e.getMessage(), e);
+			e.printStackTrace();
+			throw new RestTempalteException(e.getMessage(), e);
 		}
 	}
 
@@ -42,9 +44,9 @@ public class RestTemplateServiceImpl implements RestTemplateService {
 				return res.getBody();
 			}
 			LOOGER.error(res.getBody().getMessage());
-			throw new RestClientException(res.getBody().getMessage());
+			throw new RestTempalteException(res.getBody().getMessage());
 		} catch (Exception e) {
-			throw new RestClientException(e.getMessage(), e);
+			throw new RestTempalteException(e.getMessage(), e);
 		}
 	}
 
@@ -58,9 +60,9 @@ public class RestTemplateServiceImpl implements RestTemplateService {
 				return res.getBody();
 			}
 			LOOGER.error(res.getBody());
-			throw new RestClientException(res.getBody());
+			throw new RestTempalteException(res.getBody());
 		} catch (Exception e) {
-			throw new RestClientException(e.getMessage(), e);
+			throw new RestTempalteException(e.getMessage(), e);
 		}
 	}
 
