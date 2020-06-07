@@ -73,24 +73,31 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO updateUser(UserDTO model) {
-        if (String.valueOf(model.getStatus()) == null) {
-            model.setStatus(0);
+    public UserDTO updateUser(UserDTO model) throws NotFoundException {
+        Optional<User> oldUser = userRepository.findById(model.getId());
+        if(oldUser.isPresent()){
+            if (String.valueOf(model.getStatus()) == null) {
+                model.setStatus(0);
+            }
+            model.setPassword(EncrytedPasswordUtil.encrytePassword(model.getPassword()));
+            User user = oldUser.get();
+            modelMapper.map(model, user);
+            User newUser = userRepository.save(user);
+            return modelMapper.map(newUser, UserDTO.class);
         }
-        User oldUser = userRepository.findById(model.getId()).get();
-        oldUser.setStatus(model.getStatus());
-        User newUser = userRepository.save(oldUser);
-        return modelMapper.map(newUser, UserDTO.class);
-
+        else{
+            throw new NotFoundException("KHông tìm thấy dữ liệu");
+        }
     }
 
 
     @Override
-    public UserDTO findUserById(Long id) {
+    public UserDTO findUserById(Long id) throws NotFoundException {
         Optional<User> userOptional = userRepository.findById(id);
         if(userOptional.isPresent()){
             return modelMapper.map(userOptional.get(), UserDTO.class);
+        }else{
+            throw new NotFoundException("KHông tìm thấy dữ liệu");
         }
-        return null;
     }
 }

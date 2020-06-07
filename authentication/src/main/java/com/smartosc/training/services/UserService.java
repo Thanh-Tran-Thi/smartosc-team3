@@ -18,6 +18,6 @@ public interface UserService {
     UserDTO findUserByUserName(String name) throws NotFoundException;
     List<UserDTO> findAllUser();
     UserDTO createNewUser(UserDTO model);
-    UserDTO updateUser(UserDTO model);
-    UserDTO findUserById(Long id);
+    UserDTO updateUser(UserDTO model) throws NotFoundException;
+    UserDTO findUserById(Long id) throws NotFoundException;
 }

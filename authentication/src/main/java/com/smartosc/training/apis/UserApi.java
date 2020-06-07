@@ -31,8 +31,7 @@ public class UserApi {
     private UserDTO user;
 
     @GetMapping("/{id}")
-    @ResponseBody
-    public ResponseEntity<Object> findUserById(@PathVariable("id") Long id) {
+    public ResponseEntity<Object> findUserById(@PathVariable("id") Long id) throws NotFoundException {
         UserDTO userDTO = new UserDTO();
         userDTO = userService.findUserById(id);
         return new ResponseEntity<>(new APIResponse<UserDTO>(HttpStatus.OK.value(), "success", userDTO), HttpStatus.OK);
@@ -47,13 +46,11 @@ public class UserApi {
 
     @PostMapping
     public ResponseEntity<?> createNewUser(@RequestBody @Valid UserDTO model) throws MethodArgumentNotValidException {
-        user = userService.createNewUser(model);
-        return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(), "success", user), HttpStatus.OK);
+        return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(), "success", userService.createNewUser(model)), HttpStatus.OK);
     }
 
     @PutMapping
-    public ResponseEntity<?> updateUser(@RequestBody @Valid UserDTO model) {
-        userService.updateUser(model);
-        return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(), "success", user), HttpStatus.OK);
+    public ResponseEntity<?> updateUser(@RequestBody @Valid UserDTO model) throws NotFoundException {
+        return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(), "success", userService.updateUser(model)), HttpStatus.OK);
     }
 }
