@@ -19,5 +19,5 @@ public interface UserService {
     List<UserDTO> findAllUser();
     UserDTO createNewUser(UserDTO model);
     UserDTO updateUser(UserDTO model);
-    boolean findUserById(Long id);
+    UserDTO findUserById(Long id);
 }

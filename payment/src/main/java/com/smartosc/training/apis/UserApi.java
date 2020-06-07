@@ -27,6 +27,11 @@ public class UserApi {
     @Autowired
     private UserServiceImpl userService;
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findUserById(@PathVariable("id")Long id) {
+        return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(),"success" ,userService.findUserById(id)), HttpStatus.OK);
+    }
+
     @GetMapping
     public ResponseEntity<?> findAllUser() {
         return new ResponseEntity<>(new APIResponse<List<?>>(HttpStatus.OK.value(),"success" ,userService.findAllUser()), HttpStatus.OK);

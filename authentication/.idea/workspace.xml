@@ -2,22 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cca878a9-42ce-4f1c-8032-fa7ec93fb621" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../payment/src/main/java/com/smartosc/training/config/AppConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../payment/src/main/java/com/smartosc/training/dtos/APIResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../payment/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/smartosc/training/apis/UserApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartosc/training/apis/UserApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartosc/training/dtos/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartosc/training/dtos/UserDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartosc/training/exceptions/ControllerAdvisor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartosc/training/exceptions/RestHandleException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartosc/training/security/config/RequestFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartosc/training/security/config/RequestFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartosc/training/security/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartosc/training/security/config/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartosc/training/security/controller/SecurityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartosc/training/security/controller/SecurityController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartosc/training/services/RestTemplateService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../payment/src/main/java/com/smartosc/training/services/RestTemplateService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartosc/training/services/impls/JwtUserDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartosc/training/services/impls/JwtUserDetailServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartosc/training/services/impls/RestTemplateServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../payment/src/main/java/com/smartosc/training/services/impls/RestTemplateServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartosc/training/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartosc/training/services/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/smartosc/training/services/impls/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartosc/training/services/impls/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../payment/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../payment/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../payment/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../payment/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../payment/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../payment/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../payment/src/main/java/com/smartosc/training/apis/UserApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/../payment/src/main/java/com/smartosc/training/apis/UserApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../payment/src/main/java/com/smartosc/training/services/impls/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../payment/src/main/java/com/smartosc/training/services/impls/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,6 +166,9 @@
       <workItem from="1591252738675" duration="16961000" />
       <workItem from="1591322819551" duration="15002000" />
       <workItem from="1591346304463" duration="2989000" />
+      <workItem from="1591412368879" duration="491000" />
+      <workItem from="1591428073732" duration="722000" />
+      <workItem from="1591440073068" duration="394000" />
     </task>
     <servers />
   </component>
@@ -194,41 +192,50 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="539" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591259472586" />
-    <state x="740" y="278" key="FileChooserDialogImpl" timestamp="1591349291099">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="526" y="195" key="FileChooserDialogImpl" timestamp="1591441759810">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state x="526" y="195" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1591441759810" />
     <state x="740" y="278" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1591349291099" />
-    <state width="1877" height="348" key="GridCell.Tab.0.bottom" timestamp="1591349299585">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1591429673550">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1591429673550" />
     <state width="1877" height="348" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591349299585" />
-    <state width="1877" height="348" key="GridCell.Tab.0.center" timestamp="1591349299585">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1591429673521">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1591429673521" />
     <state width="1877" height="348" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591349299585" />
-    <state width="1877" height="348" key="GridCell.Tab.0.left" timestamp="1591349299585">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1591429673519">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1591429673519" />
     <state width="1877" height="348" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591349299585" />
-    <state width="1877" height="348" key="GridCell.Tab.0.right" timestamp="1591349299585">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1591429673549">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1591429673549" />
     <state width="1877" height="348" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591349299585" />
-    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1591349299585">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1323" height="179" key="GridCell.Tab.1.bottom" timestamp="1591429673583">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state width="1323" height="179" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1591429673583" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591349299585" />
-    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1591349299585">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1323" height="179" key="GridCell.Tab.1.center" timestamp="1591429673582">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state width="1323" height="179" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1591429673582" />
     <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591349299585" />
-    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1591349299585">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1323" height="179" key="GridCell.Tab.1.left" timestamp="1591429673581">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state width="1323" height="179" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1591429673581" />
     <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591349299585" />
-    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1591349299585">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1323" height="179" key="GridCell.Tab.1.right" timestamp="1591429673582">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state width="1323" height="179" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1591429673582" />
     <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591349299585" />
     <state width="1877" height="348" key="GridCell.Tab.2.bottom" timestamp="1591349299585">
       <screen x="0" y="0" width="1920" height="1040" />

@@ -1,5 +1,7 @@
 package com.smartosc.training.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import javafx.scene.control.Pagination;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,12 +12,17 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class APIResponse<T> {
+	@JsonProperty("status")
 	private String status;
+
+	@JsonProperty("message")
 	private String message;
 
+	@JsonProperty("data")
 	private T data;
-	private Pagination pagination;
+
 
 	public APIResponse(int status, String message) {
 		this.status = Integer.toString(status);
@@ -27,43 +34,4 @@ public class APIResponse<T> {
 		this.message = message;
 		this.data = data;
 	}
-
-	public APIResponse(String status, String message, Pagination pagination) {
-		this.status = status;
-		this.message = message;
-		this.pagination = pagination;
-	}
-
-	public Pagination getPagination() {
-		return pagination;
-	}
-
-	public void setPagination(Pagination pagination) {
-		this.pagination = pagination;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
-	public T getData() {
-		return data;
-	}
-
-	public void setData(T data) {
-		this.data = data;
-	}
-
 }

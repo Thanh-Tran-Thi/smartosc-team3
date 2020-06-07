@@ -23,29 +23,37 @@ import java.util.List;
  * @since 05/06/2020
  */
 @RestController
-@RequestMapping(value = "/user")
+@RequestMapping(value = "/api/user")
 public class UserApi {
     @Autowired
     private UserService userService;
 
     private UserDTO user;
 
+    @GetMapping("/{id}")
+    @ResponseBody
+    public ResponseEntity<Object> findUserById(@PathVariable("id") Long id) {
+        UserDTO userDTO = new UserDTO();
+        userDTO = userService.findUserById(id);
+        return new ResponseEntity<>(new APIResponse<UserDTO>(HttpStatus.OK.value(), "success", userDTO), HttpStatus.OK);
+    }
+
     @GetMapping
     public ResponseEntity<?> findAllUser() throws NotFoundException {
         List<UserDTO> userList = new ArrayList<>();
         userList = userService.findAllUser();
-        return new ResponseEntity<>(new APIResponse<List<UserDTO>>(HttpStatus.OK.value(),"success" ,userList), HttpStatus.OK);
+        return new ResponseEntity<>(new APIResponse<List<UserDTO>>(HttpStatus.OK.value(), "success", userList), HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<?> createNewUser(@RequestBody @Valid UserDTO model) throws MethodArgumentNotValidException {
         user = userService.createNewUser(model);
-        return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(),"success", user), HttpStatus.OK);
+        return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(), "success", user), HttpStatus.OK);
     }
 
     @PutMapping
     public ResponseEntity<?> updateUser(@RequestBody @Valid UserDTO model) {
         userService.updateUser(model);
-        return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(),"success", user), HttpStatus.OK);
+        return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(), "success", user), HttpStatus.OK);
     }
 }

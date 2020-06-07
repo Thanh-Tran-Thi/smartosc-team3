@@ -86,7 +86,11 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public boolean findUserById(Long id) {
-        return userRepository.findById(id).isPresent();
+    public UserDTO findUserById(Long id) {
+        Optional<User> userOptional = userRepository.findById(id);
+        if(userOptional.isPresent()){
+            return modelMapper.map(userOptional.get(), UserDTO.class);
+        }
+        return null;
     }
 }

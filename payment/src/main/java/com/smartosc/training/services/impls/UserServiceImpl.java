@@ -10,6 +10,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -30,12 +31,6 @@ public class UserServiceImpl {
     @Autowired
     private RestTemplateServiceImpl restemplateService;
 
-    public UserDTO findUserByUserName(String name){
-        String url = hostName.concat(apiName);
-        HttpHeaders header = new HttpHeaders();
-        //header.setBearerAuth(SecurityUtil.getJWTToken());
-        return  restemplateService.getSomething(url, HttpMethod.GET, header, null, new ParameterizedTypeReference<APIResponse<UserDTO>>() {});
-    }
     public List<UserDTO> findAllUser(){
         String url = hostName.concat(apiName);
         HttpHeaders header = new HttpHeaders();
@@ -55,10 +50,12 @@ public class UserServiceImpl {
         //header.setBearerAuth(SecurityUtil.getJWTToken());
         return restemplateService.getSomething(url, HttpMethod.GET, header, null, new ParameterizedTypeReference<APIResponse<UserDTO>>() {});
     }
-    public boolean findUserById(Long id){
-        String url = hostName + apiName;
+    public UserDTO findUserById(Long id){
+        String url = hostName.concat(apiName).concat("/"+id);
         HttpHeaders header = new HttpHeaders();
+        header.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+        header.setContentType(MediaType.APPLICATION_JSON);
         //header.setBearerAuth(SecurityUtil.getJWTToken());
-        return  restemplateService.getSomething(url, HttpMethod.GET, header, null, new ParameterizedTypeReference<APIResponse<Boolean>>() {});
+        return  restemplateService.getSomething(url, HttpMethod.GET, header, null, new ParameterizedTypeReference<APIResponse<UserDTO>>() {});
     }
 }
