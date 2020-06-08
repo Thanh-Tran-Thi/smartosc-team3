@@ -14,5 +14,5 @@ public interface CategoryService {
     List<CategoryProductDTO> listAll();
     CategoryProductDTO getById(Long id);
     CategoryDTO save(CategoryDTO category);
-    void update(CategoryProductDTO categoryProductDTO);
+    CategoryProductDTO update(CategoryProductDTO categoryProductDTO);
 }

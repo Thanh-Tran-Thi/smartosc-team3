@@ -1,8 +1,11 @@
 package com.smartosc.training.service;
 
+import com.smartosc.training.dto.CategoryDTO;
 import com.smartosc.training.dto.ProductDTO;
 import com.smartosc.training.entities.Category;
 import com.smartosc.training.entities.Product;
+import com.smartosc.training.exceptions.ProductDuplicateException;
+import com.smartosc.training.exceptions.ProductNotFoundException;
 import com.smartosc.training.repositories.CategoryRepository;
 import com.smartosc.training.repositories.ProductRepository;
 import com.smartosc.training.services.ProductService;
@@ -13,7 +16,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.slf4j.Logger;
@@ -26,8 +28,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.lenient;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 /**
  * products
@@ -74,7 +75,6 @@ class ProductServiceTest {
     public void getAllProductTest()
     {
         when(productRepository.findAll()).thenReturn(productList);
-        //test
         List<ProductDTO> productDTOList = productService.listAll();
 
         assertEquals(productList.size(), productDTOList.size());
@@ -83,11 +83,10 @@ class ProductServiceTest {
     @Test
     public void getAllProductTestFailed()
     {
-        when(productRepository.findAll()).thenReturn(productList);
-        //test
-        List<ProductDTO> productDTOList = productService.listAll();
-
-        assertEquals(2, productDTOList.size());
+        when(productRepository.findAll()).thenReturn(null);
+        Assertions.assertThrows(NullPointerException.class,()->{
+            productService.listAll();
+        });
     }
 
     @Test
@@ -109,19 +108,89 @@ class ProductServiceTest {
 
     @Test
     void shouldCreateProductSuccessfully() {
-        final Product product = new Product(null, "product 1", "This is product 1", "product_1.ipg", new BigDecimal("1.00"), null);
-        final ProductDTO productDTO = new ProductDTO(null, "product 1", "This is product 1", "product_1.ipg", new BigDecimal("1.00"), null);
+        List<Category> categoryList = new ArrayList<>();
+        Category category = new Category(1L, "category 1", "category 1");
+        categoryList.add(category);
+
+        List<CategoryDTO> categoryDTOList = new ArrayList<>();
+        CategoryDTO categoryDTO = new CategoryDTO(1L, "category 1", "category 1");
+        categoryDTOList.add(categoryDTO);
+
+        final Product product = new Product( null, "product 1", "This is product 1", "product_1.ipg", new BigDecimal("1.00"), categoryList);
+        final ProductDTO productDTO = new ProductDTO(null, "product 1", "This is product 1", "product_1.ipg", new BigDecimal("1.00"), categoryDTOList);
+        lenient().when(productRepository.findByName(productDTO.getName())).thenReturn(Optional.empty());
+        lenient().when(categoryRepository.findById(category.getId())).thenReturn(Optional.of(category));
         lenient().when(productRepository.save(product)).thenReturn(product);
-        assertThat(productService.save(productDTO)).isEqualTo(productDTO);
+
+        ProductDTO expected = productService.save(productDTO);
+
+        Assertions.assertEquals(expected.getName(), product.getName());
     }
 
     @Test
     void shouldCreateProductFailed () {
         final Product product = new Product(null, "product 1", "This is product 1", "product_1.ipg", new BigDecimal("1.00"), null);
         final ProductDTO productDTO = new ProductDTO(null, "product 1", "This is product 1", "product_1.ipg", new BigDecimal("1.00"), null);
-        lenient().when(productRepository.save(product)).thenReturn(null);
-        Assertions.assertThrows(NullPointerException.class,()->{
+        lenient().when(productRepository.findByName(productDTO.getName())).thenReturn(Optional.of(product));
+        Assertions.assertThrows(ProductDuplicateException.class,()->{
             productService.save(productDTO);
+        });
+    }
+
+    @Test
+    void shouldUpdateProductSuccessfully() {
+        List<Category> categoryList = new ArrayList<>();
+        Category category = new Category(1L, "category 1", "category 1", new ArrayList<>());
+        categoryList.add(category);
+
+        List<CategoryDTO> categoryDTOList = new ArrayList<>();
+        CategoryDTO categoryDTO = new CategoryDTO(1L, "category 1", "category 1");
+        categoryDTOList.add(categoryDTO);
+
+        final ProductDTO productDTO = new ProductDTO(1L, "product 1", "This is product 1", "product_1.ipg", new BigDecimal("1.00"), categoryDTOList);
+        final Product product = new Product(1L, "product 1", "This is product 1", "product_1.ipg", new BigDecimal("1.00"), categoryList);
+        lenient().when(productRepository.findById(product.getId())).thenReturn(Optional.of(product));
+        lenient().when(categoryRepository.findById(product.getId())).thenReturn(Optional.of(category));
+
+        final ProductDTO expected = productService.update(productDTO);
+        assertThat(expected).isNotNull();
+        verify(productRepository).save(any(Product.class));
+    }
+
+    @Test
+    void shouldUpdateProductFailed() {
+        List<Category> categoryList = new ArrayList<>();
+        Category category = new Category(1L, "category 1", "category 1", new ArrayList<>());
+        categoryList.add(category);
+
+        List<CategoryDTO> categoryDTOList = new ArrayList<>();
+        CategoryDTO categoryDTO = new CategoryDTO(1L, "category 1", "category 1");
+        categoryDTOList.add(categoryDTO);
+
+        final ProductDTO productDTO = new ProductDTO(1L, "product 1", "This is product 1", "product_1.ipg", new BigDecimal("1.00"), categoryDTOList);
+        final Product product = new Product(1L, "product 1", "This is product 1", "product_1.ipg", new BigDecimal("1.00"), categoryList);
+
+        lenient().when(productRepository.findById(product.getId())).thenReturn(Optional.empty());
+
+        Assertions.assertThrows(ProductNotFoundException.class,()->{
+            productService.update(productDTO);
+        });
+    }
+
+    @Test
+    void shouldBeDeleted() throws Exception{
+        final Long id = 1L;
+        lenient().when(productRepository.findById(id)).thenReturn(Optional.of(new Product()));
+        productService.delete(id);
+        verify(productRepository, times(1)).deleteById(id);
+    }
+
+    @Test
+    void shouldNotDeleted() throws Exception{
+        final Long id = 1L;
+        lenient().when(productRepository.findById(id)).thenReturn(Optional.empty());
+        Assertions.assertThrows(ProductNotFoundException.class,()->{
+            productService.delete(id);
         });
     }
 }
