@@ -1,6 +1,5 @@
 package com.smartosc.training.repositories;
 
-import com.smartosc.training.dto.ProductDTO;
 import com.smartosc.training.entities.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
