@@ -2,6 +2,7 @@ package com.smartosc.training.controllers;
 
 import com.smartosc.training.dto.ProductDTO;
 import com.smartosc.training.entities.ApiResponse;
+import com.smartosc.training.repositories.ProductRepository;
 import com.smartosc.training.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,9 @@ public class ProductController {
     @Autowired
     ProductService service;
 
+    @Autowired
+    ProductRepository productRepository;
+
     @GetMapping
     ResponseEntity<?> getAll() {
         try {
@@ -41,7 +45,7 @@ public class ProductController {
     @GetMapping(value = "/{id}")
     ResponseEntity<?> getById(@PathVariable(name = "id") @Min(1) Long id) {
         ProductDTO product = service.getById(id);
-        if (product.equals(null)){
+        if (product == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<>(new ApiResponse<>(new Date(),product), HttpStatus.OK);
@@ -51,7 +55,7 @@ public class ProductController {
     @PostMapping
     ResponseEntity<?> createNew(@Valid @RequestBody ProductDTO product){
         service.save(product);
-        return new ResponseEntity<>(new ApiResponse<>(new Date(), product), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse<>(new Date(), product), HttpStatus.CREATED);
     }
 
     @PutMapping
@@ -61,10 +65,13 @@ public class ProductController {
     }
 
     @DeleteMapping(value = "/{id}")
-    ResponseEntity<ProductDTO> deleteById(@PathVariable(name = "id")Long id) {
+    ResponseEntity<?> deleteById(@PathVariable(name = "id")Long id) {
         try {
+            if (service.getById(id) == null){
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
             service.delete(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(new ApiResponse<>(new Date(), id), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
         }

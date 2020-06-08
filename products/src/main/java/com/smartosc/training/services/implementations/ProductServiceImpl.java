@@ -4,6 +4,8 @@ import com.smartosc.training.dto.CategoryDTO;
 import com.smartosc.training.dto.ProductDTO;
 import com.smartosc.training.entities.Category;
 import com.smartosc.training.entities.Product;
+import com.smartosc.training.exceptions.ProductDuplicateException;
+import com.smartosc.training.exceptions.ProductNotFoundException;
 import com.smartosc.training.repositories.CategoryRepository;
 import com.smartosc.training.repositories.ProductRepository;
 import com.smartosc.training.services.ProductService;
@@ -35,6 +37,9 @@ public class ProductServiceImpl implements ProductService {
         List<Product> products = repository.findAll();
         List<ProductDTO> productDTOS = new ArrayList<>();
 
+        if (products.isEmpty()) {
+            throw new NullPointerException("No available");
+        }
         for (Product product: products) {
             List<Category> categories = product.getCategories();
             List<CategoryDTO> categoryDTOS = new ArrayList<>();
@@ -89,6 +94,11 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDTO save(ProductDTO productDTO) {
+        String name = productDTO.getName();
+        Optional<Product> productDTOOptional = repository.findByName(name);
+        if (productDTOOptional.isPresent()) {
+            throw new ProductDuplicateException("Product with name "+ productDTO.getName()+" already exists");
+        }
         try {
             Product product = new Product();
 
@@ -108,11 +118,10 @@ public class ProductServiceImpl implements ProductService {
             product.setPrice(productDTO.getPrice());
             product.setImage(productDTO.getImage());
             repository.save(product);
-            return productDTO;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return productDTO;
     }
 
     @Override
@@ -121,22 +130,33 @@ public class ProductServiceImpl implements ProductService {
         if (product.isPresent()) {
             Product product1 = product.get();
             List<Category> categoryList = new ArrayList<>();
-            for (CategoryDTO categoryDTO: productDTO.getCategories()) {
-                Category category = categoryRepository.findById(categoryDTO.getId()).get();
-                categoryList.add(category);
-            }
+//            if (productDTO.getCategories() != null) {
+                for (CategoryDTO categoryDTO : productDTO.getCategories()) {
+                    Category category = categoryRepository.findById(categoryDTO.getId()).get();
+                    categoryList.add(category);
+                }
+//            }
+//            else {
+//                throw new NullPointerException("Category is not available");
+//            }
             product1.setImage(productDTO.getImage());
             product1.setPrice(productDTO.getPrice());
             product1.setDescription(productDTO.getDescription());
             product1.setName(productDTO.getName());
             product1.setCategories(categoryList);
             repository.save(product1);
+        } else {
+            throw new ProductNotFoundException("Not found. Product with ID - " + productDTO.getId() + "not is existed. Can't update");
         }
         return productDTO;
     }
 
     @Override
     public void delete(Long id) {
-        repository.deleteById(id);
+        if (repository.findById(id).isPresent()) {
+            repository.deleteById(id);
+        } else {
+            throw new ProductNotFoundException("Not found. Product with ID - " + id + "not is existed. Can't delete");
+        }
     }
 }

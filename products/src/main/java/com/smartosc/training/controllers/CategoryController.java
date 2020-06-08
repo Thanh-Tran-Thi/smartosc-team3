@@ -44,7 +44,7 @@ public class CategoryController {
     @GetMapping(value = "/{id}/products")
     ResponseEntity<?> getById(@PathVariable(name = "id") Long id) {
         CategoryProductDTO category = service.getById(id);
-        if (category.equals(null)) {
+        if (category ==null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<>(new ApiResponse<>(new Date(), category), HttpStatus.OK);
@@ -54,7 +54,7 @@ public class CategoryController {
     @PostMapping
     ResponseEntity<?> createNew(@Valid @RequestBody CategoryDTO category) {
         service.save(category);
-        return new ResponseEntity<>(new ApiResponse<>(new Date(), category), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse<>(new Date(), category), HttpStatus.CREATED);
     }
 
     @PutMapping
