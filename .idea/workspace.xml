@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="34125905-f83c-45c9-ad8a-a3c760244986" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/dtos/request/UserRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/validators/ConfirmPassword.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/validators/ConfirmPasswordValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/apis/UserApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/apis/UserApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/dtos/JwtRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/dtos/request/JwtRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/security/config/RequestFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/security/config/RequestFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/security/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/security/config/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/security/controller/SecurityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/apis/SecurityApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/services/impls/JwtUserDetailServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/services/impls/JwtUserDetailServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/services/impls/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/services/impls/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication/src/test/java/com/smartosc/training/services/JwtUserDetailServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/test/java/com/smartosc/training/services/JwtUserDetailServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication/src/test/java/com/smartosc/training/services/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/test/java/com/smartosc/training/services/UserServiceTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="34125905-f83c-45c9-ad8a-a3c760244986" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -267,7 +252,7 @@
       <workItem from="1591242525482" duration="9269000" />
       <workItem from="1591339870553" duration="6196000" />
       <workItem from="1591349292698" duration="8331000" />
-      <workItem from="1591582323078" duration="27844000" />
+      <workItem from="1591582323078" duration="28084000" />
     </task>
     <servers />
   </component>
