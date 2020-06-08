@@ -1,6 +1,7 @@
 package com.smartosc.training.services.impls;
 
 import com.smartosc.training.dtos.UserDTO;
+import com.smartosc.training.dtos.request.UserRequest;
 import com.smartosc.training.entities.Role;
 import com.smartosc.training.entities.User;
 import com.smartosc.training.repositories.RoleRepository;
@@ -10,6 +11,7 @@ import com.smartosc.training.services.UserService;
 import javassist.NotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -41,23 +43,31 @@ public class UserServiceImpl implements UserService {
             dto = modelMapper.map(userEntity.get(), UserDTO.class);
             return dto;
         }else{
-            throw new NotFoundException("KHông tìm thấy dữ liệu");
+            throw new NotFoundException("UnAuthorized");
         }
     }
 
     @Override
-    public List<UserDTO> findAllUser() {
+    public List<UserDTO> findAllUser() throws NotFoundException {
         List<UserDTO> results = new ArrayList<>();
         List<User> entities = userRepository.findAll();
-        for (User item : entities) {
-            UserDTO newDTO = modelMapper.map(item, UserDTO.class);
-            results.add(newDTO);
+        if(entities!=null || !entities.isEmpty()) {
+            for (User item : entities) {
+                UserDTO newDTO = modelMapper.map(item, UserDTO.class);
+                results.add(newDTO);
+            }
+            return results;
+        }else{
+            throw new NotFoundException("không có dữ liệu");
         }
-        return results;
+
     }
 
     @Override
-    public UserDTO createNewUser(UserDTO model) {
+    public UserDTO createNewUser(UserRequest model) {
+        if(userRepository.findByUserName(model.getUsername()).isPresent()){
+            throw new DuplicateKeyException("Người dùng đã tồn tại");
+        }
         model.setPassword(EncrytedPasswordUtil.encrytePassword(model.getPassword()));
         List<Role> roles = new ArrayList<>();
         model.setStatus(1);
@@ -73,7 +83,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO updateUser(UserDTO model) throws NotFoundException {
+    public UserDTO updateUser(UserRequest model) throws NotFoundException {
         Optional<User> oldUser = userRepository.findById(model.getId());
         if(oldUser.isPresent()){
             if (String.valueOf(model.getStatus()) == null) {
