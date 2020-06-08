@@ -22,7 +22,9 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 /**
@@ -59,13 +61,21 @@ public class CategoryServiceTest {
     }
 
     @Test
-    public void getAllCategoryTestSuccess()
+    public void getAllCategoryTestSuccessfully()
     {
         when(categoryRepository.findAll()).thenReturn(categoryList);
         //test
         List<CategoryProductDTO> categoryProductDTOList = categoryService.listAll();
 
         assertEquals(categoryList.size(), categoryProductDTOList.size());
+    }
+
+    @Test
+    public void createNewCategorySuccessfully() {
+        final Category category = new Category(null, "category 1", "category 1");
+        final CategoryDTO categoryDTO = new CategoryDTO(null, "category 1", "category 1");
+        lenient().when(categoryRepository.save(category)).thenReturn(category);
+        assertThat(categoryService.save(categoryDTO)).isEqualTo(categoryDTO);
     }
 
 }

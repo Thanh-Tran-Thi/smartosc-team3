@@ -116,7 +116,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void update(ProductDTO productDTO) {
+    public ProductDTO update(ProductDTO productDTO) {
         Optional<Product> product = repository.findById(productDTO.getId());
         if (product.isPresent()) {
             Product product1 = product.get();
@@ -132,6 +132,7 @@ public class ProductServiceImpl implements ProductService {
             product1.setCategories(categoryList);
             repository.save(product1);
         }
+        return productDTO;
     }
 
     @Override

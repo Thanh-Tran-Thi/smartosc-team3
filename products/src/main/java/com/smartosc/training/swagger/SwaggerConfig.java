@@ -24,7 +24,7 @@ import static springfox.documentation.builders.PathSelectors.regex;
 @EnableSwagger2
 class SwaggerConfig {
 
-    private static final String restAPI = "products";
+    private static final String restAPI = "api";
     
     @Bean
     public Docket api() {

@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.util.Date;
 import java.util.List;
 /**
@@ -18,7 +19,7 @@ import java.util.List;
  * @created_at 04/06/2020 - 10:57 AM
  */
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/api/products")
 public class ProductController {
 
     @Autowired
@@ -38,7 +39,7 @@ public class ProductController {
     }
 
     @GetMapping(value = "/{id}")
-    ResponseEntity<?> getById(@PathVariable(name = "id")Long id) {
+    ResponseEntity<?> getById(@PathVariable(name = "id") @Min(1) Long id) {
         ProductDTO product = service.getById(id);
         if (product.equals(null)){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -60,7 +61,7 @@ public class ProductController {
     }
 
     @DeleteMapping(value = "/{id}")
-    ResponseEntity<HttpStatus> deleteById(@PathVariable(name = "id")Long id) {
+    ResponseEntity<ProductDTO> deleteById(@PathVariable(name = "id")Long id) {
         try {
             service.delete(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

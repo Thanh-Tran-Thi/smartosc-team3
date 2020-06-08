@@ -13,6 +13,6 @@ import java.util.List;
 public interface CategoryService {
     List<CategoryProductDTO> listAll();
     CategoryProductDTO getById(Long id);
-    void save(CategoryDTO category);
+    CategoryDTO save(CategoryDTO category);
     void update(CategoryProductDTO categoryProductDTO);
 }

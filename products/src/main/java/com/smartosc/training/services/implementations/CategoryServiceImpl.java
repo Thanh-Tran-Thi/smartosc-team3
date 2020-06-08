@@ -83,11 +83,12 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void save(CategoryDTO categoryDTO) {
+    public CategoryDTO save(CategoryDTO categoryDTO) {
         Category category = new Category();
         category.setName(categoryDTO.getName());
         category.setDescription(categoryDTO.getDescription());
         categoryRepository.save(category);
+        return categoryDTO;
     }
 
     @Override

@@ -13,6 +13,6 @@ public interface ProductService {
     List<ProductDTO> listAll();
     ProductDTO getById(Long id);
     ProductDTO save(ProductDTO product);
-    void update(ProductDTO productDTO);
+    ProductDTO update(ProductDTO productDTO);
     void delete(Long id);
 }

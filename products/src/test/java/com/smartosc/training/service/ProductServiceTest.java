@@ -114,4 +114,14 @@ class ProductServiceTest {
         lenient().when(productRepository.save(product)).thenReturn(product);
         assertThat(productService.save(productDTO)).isEqualTo(productDTO);
     }
+
+    @Test
+    void shouldCreateProductFailed () {
+        final Product product = new Product(null, "product 1", "This is product 1", "product_1.ipg", new BigDecimal("1.00"), null);
+        final ProductDTO productDTO = new ProductDTO(null, "product 1", "This is product 1", "product_1.ipg", new BigDecimal("1.00"), null);
+        lenient().when(productRepository.save(product)).thenReturn(null);
+        Assertions.assertThrows(NullPointerException.class,()->{
+            productService.save(productDTO);
+        });
+    }
 }

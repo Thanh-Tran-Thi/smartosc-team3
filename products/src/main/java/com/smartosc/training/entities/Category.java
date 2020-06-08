@@ -45,7 +45,7 @@ public class Category {
     @ManyToMany(mappedBy = "categories", fetch = FetchType.LAZY)
     private List<Product> products;
 
-    public Category(long i, String n, String d) {
+    public Category(Long i, String n, String d) {
         this.id = i;
         this.name = n;
         this.description = d;

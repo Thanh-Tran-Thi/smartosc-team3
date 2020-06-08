@@ -21,7 +21,7 @@ import java.util.List;
  * @created_at 04/06/2020 - 4:54 PM
  */
 @RestController
-@RequestMapping("/categories")
+@RequestMapping("/api/categories")
 public class CategoryController {
 
     @Autowired
