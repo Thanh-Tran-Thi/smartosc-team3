@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="34125905-f83c-45c9-ad8a-a3c760244986" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/payment/src/main/java/com/smartosc/training/apis/RestTemplateController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/payment/src/main/java/com/smartosc/training/services/impls/AuthenticateServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/apis/SecurityApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/apis/SecurityApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/dtos/RoleDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/dtos/RoleDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/services/impls/RoleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/services/impls/RoleServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication/src/test/java/com/smartosc/training/controller/SecurityControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/test/java/com/smartosc/training/controller/SecurityApiTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication/src/test/java/com/smartosc/training/services/RoleServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/test/java/com/smartosc/training/services/RoleServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication/src/test/java/com/smartosc/training/services/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/test/java/com/smartosc/training/services/UserServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment/src/main/java/com/smartosc/training/services/impls/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/payment/src/main/java/com/smartosc/training/services/impls/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authentication/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authentication/src/test/java/com/smartosc/training/controller/SecurityApiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/test/java/com/smartosc/training/controller/SecurityApiTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/payment/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/payment/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,11 +64,11 @@
                 <list>
                   <RecentBranch>
                     <option name="branchName" value="authentication_service" />
-                    <option name="lastUsedInstant" value="1591582394" />
+                    <option name="lastUsedInstant" value="1591687998" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="master" />
-                    <option name="lastUsedInstant" value="1591582346" />
+                    <option name="lastUsedInstant" value="1591687909" />
                   </RecentBranch>
                 </list>
               </option>
@@ -116,11 +113,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.smartosc.training.services.impls" />
+      <recent name="com.smartosc.training.apis" />
       <recent name="com.smartosc.training.dtos.request" />
       <recent name="com.smartosc.training.exception" />
-      <recent name="com.smartosc.training.apis" />
       <recent name="com.smartosc.training.config" />
-      <recent name="com.smartosc.training.services.impls" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\PC\Documents\Github\smartosc-team3\payment\src\main\java\com\smartosc\training\dtos" />
@@ -130,23 +127,7 @@
       <recent name="C:\Users\PC\Documents\Github\smartosc-team3\authentication\src\main\java\com\smartosc\training\dto" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.PaymentServiceApplication">
-    <configuration name="RoleServiceTest.findByNameFalse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="authentication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.smartosc.training.services.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.smartosc.training.services" />
-      <option name="MAIN_CLASS_NAME" value="com.smartosc.training.services.RoleServiceTest" />
-      <option name="METHOD_NAME" value="findByNameFalse" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Spring Boot.ProductServiceApplication">
     <configuration name="RoleServiceTest.findByNameSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="authentication" />
       <extension name="coverage">
@@ -179,17 +160,33 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SecurityApiTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="authentication" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.smartosc.training.services.*" />
+          <option name="PATTERN" value="com.smartosc.training.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.smartosc.training.services" />
-      <option name="MAIN_CLASS_NAME" value="com.smartosc.training.services.UserServiceTest" />
+      <option name="PACKAGE_NAME" value="com.smartosc.training.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.smartosc.training.controller.SecurityApiTest" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SecurityApiTest.authentication" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="authentication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.smartosc.training.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.smartosc.training.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.smartosc.training.controller.SecurityApiTest" />
+      <option name="METHOD_NAME" value="authentication" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -233,11 +230,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.SecurityApiTest.authentication" />
+        <item itemvalue="JUnit.SecurityApiTest" />
         <item itemvalue="JUnit.RoleServiceTest.findByUsersUserNameSuccess" />
         <item itemvalue="JUnit.RoleServiceTest.findByNameSuccess" />
         <item itemvalue="JUnit.UserServiceTest.findUserByUserNameSuccess" />
-        <item itemvalue="JUnit.RoleServiceTest.findByNameFalse" />
-        <item itemvalue="JUnit.UserServiceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -262,7 +259,7 @@
       <workItem from="1591339870553" duration="6196000" />
       <workItem from="1591349292698" duration="8331000" />
       <workItem from="1591582323078" duration="28298000" />
-      <workItem from="1591668583247" duration="15293000" />
+      <workItem from="1591668583247" duration="22226000" />
     </task>
     <servers />
   </component>
@@ -302,38 +299,38 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="278" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1591351938494" />
-    <state width="1877" height="269" key="GridCell.Tab.0.bottom" timestamp="1591686552618">
+    <state width="1877" height="269" key="GridCell.Tab.0.bottom" timestamp="1591697221315">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="269" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591686552618" />
-    <state width="1877" height="269" key="GridCell.Tab.0.center" timestamp="1591686552618">
+    <state width="1877" height="269" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591697221315" />
+    <state width="1877" height="269" key="GridCell.Tab.0.center" timestamp="1591697221315">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="269" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591686552618" />
-    <state width="1877" height="269" key="GridCell.Tab.0.left" timestamp="1591686552618">
+    <state width="1877" height="269" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591697221315" />
+    <state width="1877" height="269" key="GridCell.Tab.0.left" timestamp="1591697221315">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="269" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591686552618" />
-    <state width="1877" height="269" key="GridCell.Tab.0.right" timestamp="1591686552618">
+    <state width="1877" height="269" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591697221315" />
+    <state width="1877" height="269" key="GridCell.Tab.0.right" timestamp="1591697221315">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="269" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591686552618" />
-    <state width="1877" height="269" key="GridCell.Tab.1.bottom" timestamp="1591686552618">
+    <state width="1877" height="269" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591697221315" />
+    <state width="1877" height="269" key="GridCell.Tab.1.bottom" timestamp="1591697221315">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="269" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591686552618" />
-    <state width="1877" height="269" key="GridCell.Tab.1.center" timestamp="1591686552618">
+    <state width="1877" height="269" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591697221315" />
+    <state width="1877" height="269" key="GridCell.Tab.1.center" timestamp="1591697221315">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="269" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591686552618" />
-    <state width="1877" height="269" key="GridCell.Tab.1.left" timestamp="1591686552618">
+    <state width="1877" height="269" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591697221315" />
+    <state width="1877" height="269" key="GridCell.Tab.1.left" timestamp="1591697221315">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="269" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591686552618" />
-    <state width="1877" height="269" key="GridCell.Tab.1.right" timestamp="1591686552618">
+    <state width="1877" height="269" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591697221315" />
+    <state width="1877" height="269" key="GridCell.Tab.1.right" timestamp="1591697221315">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="269" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591686552618" />
+    <state width="1877" height="269" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591697221315" />
     <state width="1877" height="348" key="GridCell.Tab.2.bottom" timestamp="1591611547455">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -394,6 +391,26 @@
           <url>file://$PROJECT_DIR$/authentication/src/test/java/com/smartosc/training/services/UserServiceTest.java</url>
           <line>86</line>
           <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/authentication/src/test/java/com/smartosc/training/controller/SecurityApiTest.java</url>
+          <line>87</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/authentication/src/test/java/com/smartosc/training/controller/SecurityApiTest.java</url>
+          <line>93</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/apis/SecurityApi.java</url>
+          <line>38</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/apis/SecurityApi.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="29" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
