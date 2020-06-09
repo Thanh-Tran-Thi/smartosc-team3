@@ -2,6 +2,7 @@ package com.smartosc.training.apis;
 
 import com.smartosc.training.dtos.APIResponse;
 import com.smartosc.training.dtos.UserDTO;
+import com.smartosc.training.dtos.request.UserRequest;
 import com.smartosc.training.services.UserService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,12 +46,12 @@ public class UserApi {
     }
 
     @PostMapping
-    public ResponseEntity<?> createNewUser(@RequestBody @Valid UserDTO model) throws MethodArgumentNotValidException {
+    public ResponseEntity<?> createNewUser(@RequestBody @Valid UserRequest model) throws MethodArgumentNotValidException {
         return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(), "success", userService.createNewUser(model)), HttpStatus.OK);
     }
 
     @PutMapping
-    public ResponseEntity<?> updateUser(@RequestBody @Valid UserDTO model) throws NotFoundException {
+    public ResponseEntity<?> updateUser(@RequestBody @Valid UserRequest model) throws NotFoundException {
         return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(), "success", userService.updateUser(model)), HttpStatus.OK);
     }
 }
