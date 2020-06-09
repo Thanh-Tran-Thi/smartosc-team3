@@ -2,6 +2,10 @@ package com.smartosc.training.controller;
 
 import com.smartosc.training.apis.UserApi;
 import com.smartosc.training.dtos.UserDTO;
+import com.smartosc.training.dtos.request.JwtRequest;
+import com.smartosc.training.security.config.JWTAuthenticationEntryPoint;
+import com.smartosc.training.security.config.RequestFilter;
+import com.smartosc.training.security.utils.JWTUtils;
 import com.smartosc.training.services.impls.JwtUserDetailServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,6 +13,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -16,6 +21,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
+import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -41,9 +47,20 @@ public class SecurityApiTest {
 
     @MockBean
     private JwtUserDetailServiceImpl userDetailsService;
+    @MockBean
+    private AuthenticationManager authenticationManager;
+    @MockBean
+    private JWTUtils jwtTokenUtil;
+    @MockBean
+    DataSource dataSource;
+    @MockBean
+    private JWTAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+    @MockBean
+    private RequestFilter requestFilter;
 
     private UserDetails userDetails;
     private List<GrantedAuthority> grantList;
+    private JwtRequest jwtRequest;
 
     @BeforeEach
     public void setUp() {
@@ -51,12 +68,14 @@ public class SecurityApiTest {
         this.grantList = new ArrayList<>();
         grantList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         this.userDetails = new User("admin", "1234", grantList);
+
+        jwtRequest = new JwtRequest("admin", "1234");
     }
 
     @Test
     public void authentication() throws Exception {
         lenient().when(userDetailsService.loadUserByUsername("admin")).thenReturn(this.userDetails);
-        this.mockMvc.perform(get("/api/authenticate"),)
+        this.mockMvc.perform(post("/api/authenticate",jwtRequest))
                 .andExpect(status().isOk());
                 //.andExpect()
     }
