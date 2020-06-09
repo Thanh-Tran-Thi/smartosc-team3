@@ -39,10 +39,10 @@ public class UserServiceImpl {
         return  restemplateService.getSomething(url, HttpMethod.GET, header, null, new ParameterizedTypeReference<APIResponse<List<UserDTO>>>() {});
     }
     public UserDTO createNewUser(UserDTO model){
-        String url = hostName + apiName;
+        String url = hostName + apiName+"/register";
         HttpHeaders header = new HttpHeaders();
         //header.setBearerAuth(SecurityUtil.getJWTToken());
-        return  restemplateService.getSomething(url, HttpMethod.GET, header, null, new ParameterizedTypeReference<APIResponse<UserDTO>>() {});
+        return  restemplateService.getSomething(url, HttpMethod.POST, header, null, new ParameterizedTypeReference<APIResponse<UserDTO>>() {});
     }
     public UserDTO updateUser(UserDTO model){
         String url = hostName + apiName;

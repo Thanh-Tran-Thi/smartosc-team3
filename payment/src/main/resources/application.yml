@@ -3,13 +3,13 @@ server:
 
 #api
 services:
-    hotsName : http://localhost:8001
+    hotsName : http://192.90.20.232:8001
     productAPI : /products
     categoryAPI : /categories
-    userAPI : /user
+    userAPI : /api/v1/users
     roleAPI : /role
     addressAPI : /address
     promotionAPI : /promotions
-    token : /authenticate
+    token : /api/authenticate
     order : /orderDetails
 

@@ -55,9 +55,6 @@ public class SecurityApi {
 			throw new Exception("USER_DISABLED", e);
 		} catch (BadCredentialsException e) {
 			throw new BadCredentialsException("INVALID_CREDENTIALS", e);
-		}catch (Exception e) {
-			e.printStackTrace();
-			throw new BadCredentialsException("Lỗi", e);
 		}
 	}
 }

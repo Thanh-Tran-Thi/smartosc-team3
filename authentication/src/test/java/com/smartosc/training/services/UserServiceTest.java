@@ -128,11 +128,10 @@ public class UserServiceTest {
     public void createNewUserSuccess() throws NotFoundException {
         LOGGER.info("fake data for function findByUserName");
         lenient().when(userRepository.findByUserName("admin")).thenReturn(Optional.empty());
-        lenient().when(modelMapper.map(any(), User.class)).thenReturn(user.get());
+        lenient().when(modelMapper.map(any(), any())).thenReturn(user.get()).thenReturn(userDTO);
         lenient().when(roleRepository.findByName("ROLE_USER")).thenReturn(role);
 
         lenient().when(userRepository.save(user.get())).thenReturn(user.get());
-        lenient().when(modelMapper.map(any(), UserDTO.class)).thenReturn(userDTO);
 
         UserDTO userResult = userService.createNewUser(userRequest);
 
@@ -150,6 +149,48 @@ public class UserServiceTest {
     }
 
     //function updateUser
+    @Test
+    public void updateUserSuccess() throws NotFoundException {
+        LOGGER.info("fake data for function updateUser");
+        lenient().when(userRepository.findById(1L)).thenReturn(Optional.empty());
+        lenient().when(modelMapper.map(any(), any())).thenReturn(user.get()).thenReturn(userDTO);
+        lenient().when(userRepository.save(user.get())).thenReturn(user.get());
+
+        UserDTO userResult = userService.createNewUser(userRequest);
+
+        Assertions.assertEquals(userResult.getUsername(),userDTO.getUsername());
+    }
+
+    @Test
+    public void updateUserFalse() throws NotFoundException {
+        LOGGER.info("fake data for function updateUser");
+        lenient().when(userRepository.findById(1L)).thenReturn(Optional.of(new User()));
+
+        Assertions.assertThrows(NotFoundException.class,()->{
+            userService.updateUser(userRequest);
+        });
+    }
 
     //function findUserById
+
+    @Test
+    public void findUserByIdSuccess() throws NotFoundException {
+        LOGGER.info("fake data for function findUserById");
+        lenient().when(userRepository.findById(1L)).thenReturn(user);
+        lenient().when(modelMapper.map(any(), any())).thenReturn(userDTO);
+
+        UserDTO userResult = userService.findUserById(1L);
+
+        Assertions.assertEquals(userResult.getUsername(),userDTO.getUsername());
+    }
+
+    @Test
+    public void findUserByIdFalse() throws NotFoundException {
+        LOGGER.info("fake data for function findUserById");
+        lenient().when(userRepository.findById(1L)).thenReturn(Optional.empty());
+
+        Assertions.assertThrows(NotFoundException.class,()->{
+            userService.findUserById(1L);
+        });
+    }
 }
