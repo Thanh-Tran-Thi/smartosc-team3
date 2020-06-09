@@ -1,15 +1,13 @@
 server:
-    port : 8002
+    port : 8003
 
 #api
 services:
-    hotsName : http://192.90.20.232:8001
-    productAPI : /products
-    categoryAPI : /categories
-    userAPI : /api/v1/users
+    hotsName : http://localhost:8001
+    productAPI : /api/products
+    categoryAPI : /api/categories
+    userAPI : /api/user
     roleAPI : /role
-    addressAPI : /address
-    promotionAPI : /promotions
     token : /api/authenticate
-    order : /orderDetails
+
 

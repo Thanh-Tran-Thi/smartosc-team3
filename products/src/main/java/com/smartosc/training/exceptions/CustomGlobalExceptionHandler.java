@@ -1,4 +1,4 @@
-package com.smartosc.training.validator;
+package com.smartosc.training.exceptions;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

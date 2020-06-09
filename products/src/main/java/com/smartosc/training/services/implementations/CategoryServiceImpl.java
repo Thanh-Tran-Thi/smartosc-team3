@@ -5,6 +5,8 @@ import com.smartosc.training.dto.CategoryProductDTO;
 import com.smartosc.training.dto.ProductCategoryDTO;
 import com.smartosc.training.entities.Category;
 import com.smartosc.training.entities.Product;
+import com.smartosc.training.exceptions.CategoryNotFoundException;
+import com.smartosc.training.exceptions.ProductDuplicateException;
 import com.smartosc.training.repositories.CategoryRepository;
 import com.smartosc.training.repositories.ProductRepository;
 import com.smartosc.training.services.CategoryService;
@@ -78,12 +80,19 @@ public class CategoryServiceImpl implements CategoryService {
             categoryDTO.setName(category.get().getName());
             categoryDTO.setId(category.get().getId());
             categoryDTO.setDescription(category.get().getDescription());
+        } else {
+            throw new NullPointerException("Category is not existed ");
         }
         return categoryDTO;
     }
 
     @Override
     public CategoryDTO save(CategoryDTO categoryDTO) {
+        String name = categoryDTO.getName();
+        Optional<Category> categoryOptional = categoryRepository.findByName(name);
+        if (categoryOptional.isPresent()) {
+            throw new ProductDuplicateException("Category with name " + categoryDTO.getName() + " already exists");
+        }
         Category category = new Category();
         category.setName(categoryDTO.getName());
         category.setDescription(categoryDTO.getDescription());
@@ -92,19 +101,26 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void update(CategoryProductDTO dto) {
+    public CategoryProductDTO update(CategoryProductDTO dto) {
         Optional<Category> category = categoryRepository.findById(dto.getId());
         if (category.isPresent()) {
             Category category1 = category.get();
             List<Product> productList = new ArrayList<>();
-            for (ProductCategoryDTO productDTO : dto.getProducts()) {
-                Product product = productRepository.findById(productDTO.getId()).get();
-                productList.add(product);
+            if (category.get().getProducts() != null) {
+                for (ProductCategoryDTO productDTO : dto.getProducts()) {
+                    Product product = productRepository.findById(productDTO.getId()).get();
+                    productList.add(product);
+                }
+            } else {
+                throw new NullPointerException();
             }
             category1.setName(dto.getName());
             category1.setDescription(dto.getDescription());
             category1.setProducts(productList);
             categoryRepository.save(category1);
+            return dto;
+        } else {
+            throw new CategoryNotFoundException("Not found. Category with ID - " + dto.getId() + "not is existed. Can't update");
         }
     }
 }

@@ -28,4 +28,5 @@ public class CategoryProductDTO {
         this.name = name;
         this.description = description;
     }
+
 }
