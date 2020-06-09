@@ -19,5 +19,4 @@ import lombok.Setter;
 @NoArgsConstructor
 public class RoleDTO extends AbstractDTO{
     private String name;
-    private int status;
 }

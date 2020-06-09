@@ -5,6 +5,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -77,8 +78,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //	    		.antMatchers("/authenticate","/register","/products/**","/orders/**","/categories**").permitAll()
 //	    		.antMatchers(HttpMethod.POST, "/orders**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
 //	    		.antMatchers(HttpMethod.GET, "/orders**").hasAnyAuthority("ROLE_USER")
-//	    		.antMatchers(HttpMethod.GET, "/user/**").hasAnyAuthority("ROLE_ADMIN","ROLE_USER")
-//	    		.antMatchers(HttpMethod.POST, "/user/**").hasAnyAuthority("ROLE_ADMIN","ROLE_USER")
+	    		.antMatchers(HttpMethod.GET, "/api/user/**").hasAnyAuthority("ROLE_ADMIN","ROLE_USER")
+	    		.antMatchers(HttpMethod.POST, "/api/user/**").hasAnyAuthority("ROLE_ADMIN","ROLE_USER")
+				.antMatchers(HttpMethod.PUT, "/api/user/**").hasAnyAuthority("ROLE_ADMIN","ROLE_USER")
 //	    		.antMatchers(HttpMethod.GET, "/role/**").hasAnyAuthority("ROLE_ADMIN","ROLE_USER")
 //	    		.antMatchers(HttpMethod.POST, "/products**").hasAnyAuthority("ROLE_ADMIN")
 //	    		.antMatchers(HttpMethod.PUT, "/products**").hasAnyAuthority("ROLE_ADMIN")

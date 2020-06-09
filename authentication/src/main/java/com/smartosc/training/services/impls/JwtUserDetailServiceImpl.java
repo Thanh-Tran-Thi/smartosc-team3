@@ -21,22 +21,22 @@ import java.util.List;
 public class JwtUserDetailServiceImpl implements UserDetailsService {
 
     @Autowired
-    private RoleService roleRepository;
+    private RoleService roleService;
 
     @Autowired
-    private UserService userRepository;
+    private UserService userService;
 
     @SneakyThrows
     @Override
     public UserDetails loadUserByUsername(String userName) {
-        UserDTO users = this.userRepository.findUserByUserName(userName);
+        UserDTO users = this.userService.findUserByUserName(userName);
 
         if (users == null || users.getStatus() == 0) {
             throw new UsernameNotFoundException("User " + userName + " was not found in the database");
         }
 
         List<GrantedAuthority> grantList = new ArrayList<>();
-        List<RoleDTO> roleNames = this.roleRepository.findByUsersUserName(userName);
+        List<RoleDTO> roleNames = this.roleService.findByUsersUserName(userName);
         if (roleNames != null) {
             for (RoleDTO role : roleNames) {
                 grantList.add(new SimpleGrantedAuthority(role.getName()));
