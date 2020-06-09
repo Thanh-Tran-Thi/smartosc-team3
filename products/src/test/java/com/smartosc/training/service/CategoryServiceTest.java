@@ -64,7 +64,7 @@ public class CategoryServiceTest {
         MockitoAnnotations.initMocks(this);
 
         List<Product> productList = new ArrayList<>();
-        Product proOne = new Product(1L, "product 1", "This is product 1", "product_1.ipg", new BigDecimal("1.00"));
+        Product proOne = new Product(1L, "product 1", "This is product 1", "product_1.jpg", new BigDecimal("1.00"));
         productList.add(proOne);
 
         Category category1 = new Category(1L, "category 1", "category 1");
@@ -133,13 +133,13 @@ public class CategoryServiceTest {
 
     @Test
     public void updateCategorySuccessfully() {
-        final Product product = new Product(1L, "product 1", "This is product 1", "product_1.ipg", new BigDecimal("1.00"), null);
+        final Product product = new Product(1L, "product 1", "This is product 1", "product_1.jpg", new BigDecimal("1.00"), null);
         List<Product> productList = new ArrayList<>();
-        Product proOne = new Product(1L, "product 1", "This is product 1", "product_1.ipg", new BigDecimal("1.00"));
+        Product proOne = new Product(1L, "product 1", "This is product 1", "product_1.jpg", new BigDecimal("1.00"));
         productList.add(proOne);
 
         List<ProductCategoryDTO> dtoList = new ArrayList<>();
-        ProductCategoryDTO productCategoryDTO = new ProductCategoryDTO(1L, "product 1", "This is product 1", "product_1.ipg", new BigDecimal("1.00"));
+        ProductCategoryDTO productCategoryDTO = new ProductCategoryDTO(1L, "product 1", "This is product 1", "product_1.jpg", new BigDecimal("1.00"));
         dtoList.add(productCategoryDTO);
 
         final Category category = new Category(1L, "category 1", "category 1", productList);
@@ -161,7 +161,7 @@ public class CategoryServiceTest {
         productList.add(proOne);
 
         List<ProductCategoryDTO> dtoList = new ArrayList<>();
-        ProductCategoryDTO productCategoryDTO = new ProductCategoryDTO(1L, "product 1", "This is product 1", "product_1.ipg", new BigDecimal("1.00"));
+        ProductCategoryDTO productCategoryDTO = new ProductCategoryDTO(1L, "product 1", "This is product 1", "product_1.jpg", new BigDecimal("1.00"));
         dtoList.add(productCategoryDTO);
 
         final Category category = new Category(1L, "category 1", "category 1", productList);

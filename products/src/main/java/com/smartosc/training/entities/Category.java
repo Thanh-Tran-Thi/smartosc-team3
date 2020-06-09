@@ -39,7 +39,6 @@ public class Category {
     private String name;
 
     @Column
-    @NotEmpty(message = "Please, enter a description")
     private String description;
 
     @ManyToMany(mappedBy = "categories", fetch = FetchType.LAZY)

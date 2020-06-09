@@ -40,10 +40,10 @@ public class ProductServiceImpl implements ProductService {
         if (products.isEmpty()) {
             throw new NullPointerException("No available");
         }
-        for (Product product: products) {
+        for (Product product : products) {
             List<Category> categories = product.getCategories();
             List<CategoryDTO> categoryDTOS = new ArrayList<>();
-            for (Category category: categories) {
+            for (Category category : categories) {
                 CategoryDTO categoryDTO = new CategoryDTO();
                 categoryDTO.setId(category.getId());
                 categoryDTO.setName(category.getName());
@@ -66,13 +66,13 @@ public class ProductServiceImpl implements ProductService {
     public ProductDTO getById(Long id) {
         Optional<Product> product = repository.findById(id);
         ProductDTO productDTO = new ProductDTO();
-        if(!product.isPresent()){
+        if (!product.isPresent()) {
             throw new NullPointerException("Product is not existed ");
         }
         try {
             List<Category> categories = product.get().getCategories();
             List<CategoryDTO> categoryProductDTOS = new ArrayList<>();
-            for (Category category: categories) {
+            for (Category category : categories) {
                 CategoryDTO categoryProductDTO = new CategoryDTO();
                 categoryProductDTO.setId(category.getId());
                 categoryProductDTO.setName(category.getName());
@@ -95,32 +95,27 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductDTO save(ProductDTO productDTO) {
         String name = productDTO.getName();
-        Optional<Product> productDTOOptional = repository.findByName(name);
-        if (productDTOOptional.isPresent()) {
-            throw new ProductDuplicateException("Product with name "+ productDTO.getName()+" already exists");
+        Optional<Product> productOptional = repository.findByName(name);
+        if (productOptional.isPresent()) {
+            throw new ProductDuplicateException("Product with name " + productDTO.getName() + " already exists");
         }
-        try {
-            Product product = new Product();
+        Product product = new Product();
+        List<Category> categoryList = new ArrayList<>();
+        List<CategoryDTO> categoryDTOList = productDTO.getCategories();
 
-            List<Category> categoryList = new ArrayList<>();
-            List<CategoryDTO> categoryDTOList = productDTO.getCategories();
-
-            if (categoryDTOList != null) {
-                for (CategoryDTO categoryDTO: categoryDTOList) {
-                    Category category = categoryRepository.findById(categoryDTO.getId()).get();
-                    categoryList.add(category);
-                }
+        if (categoryDTOList != null && !categoryDTOList.isEmpty()) {
+            for (CategoryDTO categoryDTO : categoryDTOList) {
+                Category category = categoryRepository.findById(categoryDTO.getId()).get();
+                categoryList.add(category);
             }
-            product.setCategories(categoryList);
-            product.setId(productDTO.getId());
-            product.setName(productDTO.getName());
-            product.setDescription(productDTO.getDescription());
-            product.setPrice(productDTO.getPrice());
-            product.setImage(productDTO.getImage());
-            repository.save(product);
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+        product.setCategories(categoryList);
+        product.setId(productDTO.getId());
+        product.setName(productDTO.getName());
+        product.setDescription(productDTO.getDescription());
+        product.setPrice(productDTO.getPrice());
+        product.setImage(productDTO.getImage());
+        repository.save(product);
         return productDTO;
     }
 
@@ -130,15 +125,10 @@ public class ProductServiceImpl implements ProductService {
         if (product.isPresent()) {
             Product product1 = product.get();
             List<Category> categoryList = new ArrayList<>();
-//            if (productDTO.getCategories() != null) {
-                for (CategoryDTO categoryDTO : productDTO.getCategories()) {
-                    Category category = categoryRepository.findById(categoryDTO.getId()).get();
-                    categoryList.add(category);
-                }
-//            }
-//            else {
-//                throw new NullPointerException("Category is not available");
-//            }
+            for (CategoryDTO categoryDTO : productDTO.getCategories()) {
+                Category category = categoryRepository.findById(categoryDTO.getId()).get();
+                categoryList.add(category);
+            }
             product1.setImage(productDTO.getImage());
             product1.setPrice(productDTO.getPrice());
             product1.setDescription(productDTO.getDescription());

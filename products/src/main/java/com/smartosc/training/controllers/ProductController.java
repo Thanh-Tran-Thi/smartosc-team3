@@ -59,7 +59,7 @@ public class ProductController {
     }
 
     @PutMapping
-    ResponseEntity<?> update(@RequestBody ProductDTO input){
+    ResponseEntity<?> update(@Valid @RequestBody ProductDTO input){
         service.update(input);
         return new ResponseEntity<>(new ApiResponse<>(new Date(), input), HttpStatus.OK);
     }

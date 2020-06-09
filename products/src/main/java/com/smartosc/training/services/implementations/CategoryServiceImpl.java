@@ -93,16 +93,11 @@ public class CategoryServiceImpl implements CategoryService {
         if (categoryOptional.isPresent()) {
             throw new ProductDuplicateException("Category with name " + categoryDTO.getName() + " already exists");
         }
-        try {
-            Category category = new Category();
-            category.setName(categoryDTO.getName());
-            category.setDescription(categoryDTO.getDescription());
-            categoryRepository.save(category);
-            return categoryDTO;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+        Category category = new Category();
+        category.setName(categoryDTO.getName());
+        category.setDescription(categoryDTO.getDescription());
+        categoryRepository.save(category);
+        return categoryDTO;
     }
 
     @Override
@@ -124,7 +119,7 @@ public class CategoryServiceImpl implements CategoryService {
             category1.setProducts(productList);
             categoryRepository.save(category1);
             return dto;
-        }else {
+        } else {
             throw new CategoryNotFoundException("Not found. Category with ID - " + dto.getId() + "not is existed. Can't update");
         }
     }
