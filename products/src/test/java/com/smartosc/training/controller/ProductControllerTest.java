@@ -26,7 +26,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static org.mockito.Mockito.when;
 import static org.hamcrest.Matchers.is;
@@ -59,9 +58,9 @@ public class ProductControllerTest {
         CategoryDTO category = new CategoryDTO(1L, "category 1", "category 1");
         categoryList.add(category);
 
-        ProductDTO proOne = new ProductDTO(1L, "product 1", "This is product 1", "product_1.ipg", new BigDecimal("1.00"), categoryList);
-        ProductDTO proTwo = new ProductDTO(2L, "product 2", "This is product 2", "product_2.ipg", new BigDecimal("2.00"), categoryList);
-        ProductDTO proThree = new ProductDTO(3L, "product 3", "This is product 3", "product_3.ipg", new BigDecimal("3.00"), categoryList);
+        ProductDTO proOne = new ProductDTO(1L, "product 1", "This is product 1", "product_1.jpg", new BigDecimal("1.00"), categoryList);
+        ProductDTO proTwo = new ProductDTO(2L, "product 2", "This is product 2", "product_2.jpg", new BigDecimal("2.00"), categoryList);
+        ProductDTO proThree = new ProductDTO(3L, "product 3", "This is product 3", "product_3.jpg", new BigDecimal("3.00"), categoryList);
 
         productList = new ArrayList<>();
 
@@ -99,8 +98,8 @@ public class ProductControllerTest {
     }
 
     @Test
-    void createBookSuccessfully () throws Exception {
-        ProductDTO productDTO = new ProductDTO(null, "product 4", "This is product 4", "product_4.ipg", new BigDecimal("3.00"), null);
+    void createProductSuccessfully () throws Exception {
+        ProductDTO productDTO = new ProductDTO(null, "product 4", "This is product 4", "product_4.jpg", new BigDecimal("3.00"), null);
 
         when(productService.save(any(ProductDTO.class))).thenReturn(productDTO);
 
@@ -114,8 +113,8 @@ public class ProductControllerTest {
     }
 
     @Test
-    void updateBookSuccessfully () throws Exception {
-        ProductDTO productDTO = new ProductDTO(null, "product 4", "This is product 4", "product_4.ipg", new BigDecimal("3.00"), null);
+    void updateProductSuccessfully () throws Exception {
+        ProductDTO productDTO = new ProductDTO(null, "product 4", "This is product 4", "product_4.jpg", new BigDecimal("3.00"), null);
         when(productService.update(any(ProductDTO.class))).thenReturn(productDTO);
 
         this.mockMvc.perform(
@@ -130,8 +129,8 @@ public class ProductControllerTest {
     @Test
     void shouldDeleteProduct() throws Exception {
         Long id = 1L;
-        Product product = new Product(id, "product 4", "This is product 4", "product_4.ipg", new BigDecimal("3.00"), null);
-        ProductDTO productDTO = new ProductDTO(id, "product 4", "This is product 4", "product_4.ipg", new BigDecimal("3.00"), null);
+        Product product = new Product(id, "product 4", "This is product 4", "product_4.jpg", new BigDecimal("3.00"), null);
+        ProductDTO productDTO = new ProductDTO(id, "product 4", "This is product 4", "product_4.jpg", new BigDecimal("3.00"), null);
 
         when(productService.getById(id)).thenReturn(productDTO);
 

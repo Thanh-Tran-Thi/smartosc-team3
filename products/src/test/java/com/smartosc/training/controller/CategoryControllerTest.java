@@ -2,29 +2,18 @@ package com.smartosc.training.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.smartosc.training.controllers.CategoryController;
-import com.smartosc.training.controllers.ProductController;
 import com.smartosc.training.dto.CategoryDTO;
 import com.smartosc.training.dto.CategoryProductDTO;
 import com.smartosc.training.dto.ProductDTO;
-import com.smartosc.training.entities.Category;
-import com.smartosc.training.entities.Product;
 import com.smartosc.training.services.CategoryService;
-import com.smartosc.training.services.ProductService;
 import static org.hamcrest.Matchers.*;
-import org.junit.Before;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -32,9 +21,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.Mockito.when;

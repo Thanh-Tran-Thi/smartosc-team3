@@ -1,5 +1,6 @@
 package com.smartosc.training.entities;
 
+import com.smartosc.training.validator.ImageConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -41,19 +43,16 @@ public class Product {
     private Long id;
 
     @Column
-    @NotEmpty(message = "Please, enter a name")
     private String name;
 
     @Column
-    @NotEmpty(message = "Please, enter a description")
     private String description;
 
     @Column
     private String image;
 
     @Column
-    @NotNull(message = "Please, enter price for product")
-    @DecimalMin("1.00")
+
     private BigDecimal price;
 
     @ManyToMany(fetch = FetchType.LAZY,cascade = {CascadeType.MERGE,CascadeType.PERSIST})

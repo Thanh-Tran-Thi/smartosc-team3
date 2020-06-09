@@ -60,19 +60,19 @@ class ProductServiceTest {
         Category category = new Category(1L, "category 1", "category 1", new ArrayList<>());
         categoryList.add(category);
 
-        Product proOne = new Product(1L, "product 1", "This is product 1", "product_1.ipg", new BigDecimal("1.00"), categoryList);
-        Product proTwo = new Product(2L, "product 2", "This is product 2", "product_2.ipg", new BigDecimal("2.00"), categoryList);
-        Product proThree = new Product(3L, "product 3", "This is product 3", "product_3.ipg", new BigDecimal("3.00"), categoryList);
+        Product proOne = new Product(1L, "product 1", "This is product 1", "product_1.jpg", new BigDecimal("1.00"), categoryList);
+        Product proTwo = new Product(2L, "product 2", "This is product 2", "product_2.jpg", new BigDecimal("2.00"), categoryList);
+        Product proThree = new Product(3L, "product 3", "This is product 3", "product_3.jpg", new BigDecimal("3.00"), categoryList);
 
         productList.add(proOne);
         productList.add(proTwo);
         productList.add(proThree);
 
-        product = Optional.of(new Product(1L, "product 1", "This is product 1", "product_1.ipg", new BigDecimal("1.00"), categoryList));
+        product = Optional.of(new Product(1L, "product 1", "This is product 1", "product_1.jpg", new BigDecimal("1.00"), categoryList));
     }
 
     @Test
-    public void getAllProductTest()
+    public void getAllProductTestSuccessfully()
     {
         when(productRepository.findAll()).thenReturn(productList);
         List<ProductDTO> productDTOList = productService.listAll();
@@ -90,7 +90,7 @@ class ProductServiceTest {
     }
 
     @Test
-    public void findByIdSuccess(){
+    public void findByIdSuccessfully(){
         LOGGER.info("fake data for function findByIdName");
         lenient().when(productRepository.findById(1L)).thenReturn(product);
         ProductDTO userResult = productService.getById(1L);
@@ -98,7 +98,7 @@ class ProductServiceTest {
     }
 
     @Test
-    public void findByIdFail(){
+    public void findByIdFailed(){
         lenient().when(productRepository.findById(1L)).thenReturn(null);
         Assertions.assertThrows(NullPointerException.class,()->{
             productService.getById(1L);
@@ -116,8 +116,8 @@ class ProductServiceTest {
         CategoryDTO categoryDTO = new CategoryDTO(1L, "category 1", "category 1");
         categoryDTOList.add(categoryDTO);
 
-        final Product product = new Product( null, "product 1", "This is product 1", "product_1.ipg", new BigDecimal("1.00"), categoryList);
-        final ProductDTO productDTO = new ProductDTO(null, "product 1", "This is product 1", "product_1.ipg", new BigDecimal("1.00"), categoryDTOList);
+        final Product product = new Product( null, "product 1", "This is product 1", "product_1.jpg", new BigDecimal("1.00"), categoryList);
+        final ProductDTO productDTO = new ProductDTO(null, "product 1", "This is product 1", "product_1.jpg", new BigDecimal("1.00"), categoryDTOList);
         lenient().when(productRepository.findByName(productDTO.getName())).thenReturn(Optional.empty());
         lenient().when(categoryRepository.findById(category.getId())).thenReturn(Optional.of(category));
         lenient().when(productRepository.save(product)).thenReturn(product);
@@ -129,8 +129,8 @@ class ProductServiceTest {
 
     @Test
     void shouldCreateProductFailed () {
-        final Product product = new Product(null, "product 1", "This is product 1", "product_1.ipg", new BigDecimal("1.00"), null);
-        final ProductDTO productDTO = new ProductDTO(null, "product 1", "This is product 1", "product_1.ipg", new BigDecimal("1.00"), null);
+        final Product product = new Product(null, "product 1", "This is product 1", "product_1.jpg", new BigDecimal("1.00"), null);
+        final ProductDTO productDTO = new ProductDTO(null, "product 1", "This is product 1", "product_1.jpg", new BigDecimal("1.00"), null);
         lenient().when(productRepository.findByName(productDTO.getName())).thenReturn(Optional.of(product));
         Assertions.assertThrows(ProductDuplicateException.class,()->{
             productService.save(productDTO);
@@ -147,8 +147,8 @@ class ProductServiceTest {
         CategoryDTO categoryDTO = new CategoryDTO(1L, "category 1", "category 1");
         categoryDTOList.add(categoryDTO);
 
-        final ProductDTO productDTO = new ProductDTO(1L, "product 1", "This is product 1", "product_1.ipg", new BigDecimal("1.00"), categoryDTOList);
-        final Product product = new Product(1L, "product 1", "This is product 1", "product_1.ipg", new BigDecimal("1.00"), categoryList);
+        final ProductDTO productDTO = new ProductDTO(1L, "product 1", "This is product 1", "product_1.jpg", new BigDecimal("1.00"), categoryDTOList);
+        final Product product = new Product(1L, "product 1", "This is product 1", "product_1.jpg", new BigDecimal("1.00"), categoryList);
         lenient().when(productRepository.findById(product.getId())).thenReturn(Optional.of(product));
         lenient().when(categoryRepository.findById(product.getId())).thenReturn(Optional.of(category));
 
@@ -167,8 +167,8 @@ class ProductServiceTest {
         CategoryDTO categoryDTO = new CategoryDTO(1L, "category 1", "category 1");
         categoryDTOList.add(categoryDTO);
 
-        final ProductDTO productDTO = new ProductDTO(1L, "product 1", "This is product 1", "product_1.ipg", new BigDecimal("1.00"), categoryDTOList);
-        final Product product = new Product(1L, "product 1", "This is product 1", "product_1.ipg", new BigDecimal("1.00"), categoryList);
+        final ProductDTO productDTO = new ProductDTO(1L, "product 1", "This is product 1", "product_1.jpg", new BigDecimal("1.00"), categoryDTOList);
+        final Product product = new Product(1L, "product 1", "This is product 1", "product_1.jpg", new BigDecimal("1.00"), categoryList);
 
         lenient().when(productRepository.findById(product.getId())).thenReturn(Optional.empty());
 
