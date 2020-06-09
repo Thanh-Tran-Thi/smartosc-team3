@@ -22,6 +22,8 @@ import java.util.Optional;
 
 import static org.mockito.Mockito.lenient;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
  * authentication
@@ -50,10 +52,11 @@ public class SecurityApiTest {
         grantList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         this.userDetails = new User("admin", "1234", grantList);
     }
+
     @Test
-    public void authentication(){
+    public void authentication() throws Exception {
         lenient().when(userDetailsService.loadUserByUsername("admin")).thenReturn(this.userDetails);
-        this.mockMvc.perform(get("/api/authenticate"))
+        this.mockMvc.perform(get("/api/authenticate"),)
                 .andExpect(status().isOk());
                 //.andExpect()
     }
