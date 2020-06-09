@@ -89,7 +89,7 @@ public class SecurityApiTest {
         this.mockMvc.perform(post("/api/authenticate")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(jwtRequest)))
-                .andExpect(status().isOk());
-                //.andExpect()
+                .andExpect(status().isOk())
+                .andExpect();
     }
 }
