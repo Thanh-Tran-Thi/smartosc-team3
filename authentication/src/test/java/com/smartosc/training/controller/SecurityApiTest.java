@@ -13,6 +13,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -24,6 +26,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import javax.sql.DataSource;
@@ -69,6 +72,8 @@ public class SecurityApiTest {
     private List<GrantedAuthority> grantList;
     private JwtRequest jwtRequest;
 
+    private Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
@@ -86,10 +91,12 @@ public class SecurityApiTest {
     public void authentication() throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         lenient().when(userDetailsService.loadUserByUsername("admin")).thenReturn(this.userDetails);
-        this.mockMvc.perform(post("/api/authenticate")
+        MvcResult token = this.mockMvc.perform(post("/api/authenticate")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(jwtRequest)))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andReturn();
+        LOGGER.info("hahahahahaahaa"+token.getResponse().getContentAsString());
     }
     @Test
     public void authenticationFails() throws Exception {
@@ -97,6 +104,8 @@ public class SecurityApiTest {
         lenient().when(userDetailsService.loadUserByUsername("admin")).thenReturn(null);
         this.mockMvc.perform(post("/api/authenticate"))
                 .andExpect(status().isBadRequest());
+
+
 
     }
 }
