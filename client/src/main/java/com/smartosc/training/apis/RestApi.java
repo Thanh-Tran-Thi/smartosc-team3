@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping(value = "/authenticate")
-public class RestTemplateController {
+public class RestApi {
     @Autowired
     private AuthenticateServiceImpl userService;
 

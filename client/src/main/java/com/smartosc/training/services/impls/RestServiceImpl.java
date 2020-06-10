@@ -10,12 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public class RestTemplateServiceImpl implements RestTemplateService {
-	private static final Logger LOOGER = LoggerFactory.getLogger(RestTemplateServiceImpl.class);
+public class RestServiceImpl implements RestTemplateService {
+	private static final Logger LOOGER = LoggerFactory.getLogger(RestServiceImpl.class);
 	@Autowired
 	private RestTemplate restTemplate;
 	@Override
