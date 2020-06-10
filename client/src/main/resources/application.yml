@@ -1,0 +1,13 @@
+server:
+    port : 8003
+
+#api
+services:
+    hostName : http://localhost:8001
+    productAPI : /api/products
+    categoryAPI : /api/categories
+    userAPI : /api/user
+    roleAPI : /role
+    token : /api/authenticate
+
+
