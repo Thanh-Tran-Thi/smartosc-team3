@@ -46,7 +46,9 @@ public class UserApi {
 
     @PostMapping
     public ResponseEntity<?> createNewUser(@RequestBody @Valid UserRequest model) throws MethodArgumentNotValidException {
-        return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(), "success", userService.createNewUser(model)), HttpStatus.OK);
+        UserDTO userDTO = new UserDTO();
+        userDTO = userService.createNewUser(model);
+        return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(), "success",userDTO), HttpStatus.OK);
     }
 
     @PutMapping

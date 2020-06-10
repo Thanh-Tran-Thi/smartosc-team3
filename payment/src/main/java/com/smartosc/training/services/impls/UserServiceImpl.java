@@ -50,12 +50,12 @@ public class UserServiceImpl {
         //header.setBearerAuth(SecurityUtil.getJWTToken());
         return restemplateService.getSomething(url, HttpMethod.GET, header, null, new ParameterizedTypeReference<APIResponse<UserDTO>>() {});
     }
-    public UserDTO findUserById(Long id){
+    public UserDTO findUserById(Long id, String token){
         String url = hostName.concat(apiName).concat("/"+id);
         HttpHeaders header = new HttpHeaders();
         header.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
         header.setContentType(MediaType.APPLICATION_JSON);
-        //header.setBearerAuth(SecurityUtil.getJWTToken());
+        header.setBearerAuth(token.substring(7));
         return  restemplateService.getSomething(url, HttpMethod.GET, header, null, new ParameterizedTypeReference<APIResponse<UserDTO>>() {});
     }
 }

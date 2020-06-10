@@ -2,8 +2,6 @@ package com.smartosc.training.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.smartosc.training.apis.SecurityApi;
-import com.smartosc.training.apis.UserApi;
-import com.smartosc.training.dtos.UserDTO;
 import com.smartosc.training.dtos.request.JwtRequest;
 import com.smartosc.training.security.config.JWTAuthenticationEntryPoint;
 import com.smartosc.training.security.config.RequestFilter;
@@ -37,7 +35,7 @@ import java.util.Optional;
 import static org.mockito.Mockito.lenient;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
 
 /**
  * authentication

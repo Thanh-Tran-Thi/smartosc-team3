@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +29,9 @@ public class UserApi {
     private UserServiceImpl userService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> findUserById(@PathVariable("id")Long id) {
-        return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(),"success" ,userService.findUserById(id)), HttpStatus.OK);
+    public ResponseEntity<?> findUserById(@PathVariable("id")Long id, @RequestHeader(value="Authorization") String token) {
+        System.out.println(token.substring(7));
+        return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(),"success" ,userService.findUserById(id, token)), HttpStatus.OK);
     }
 
     @GetMapping
