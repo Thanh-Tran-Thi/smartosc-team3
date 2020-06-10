@@ -29,7 +29,6 @@ public class UserApi {
     @Autowired
     private UserService userService;
 
-    private UserDTO user;
 
     @GetMapping("/{id}")
     public ResponseEntity<Object> findUserById(@PathVariable("id") Long id) throws NotFoundException {
