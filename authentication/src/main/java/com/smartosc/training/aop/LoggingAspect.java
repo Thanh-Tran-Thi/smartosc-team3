@@ -29,29 +29,29 @@ public class LoggingAspect
     public void service() {
     }
 
-    @Around("service()")
+    @Around("@annotation(LogExecutionTime)")
     public Object aroundServiceMethod(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         Object result = proceedingJoinPoint.proceed();
         return result;
     }
-//
-//    @AfterThrowing (pointcut = "service()", throwing = "ex")
-//    public void logAfterThrowing(JoinPoint joinPoint, Throwable ex) throws IllegalAccessException {
-//    	CodeSignature codeSignature = (CodeSignature) joinPoint.getSignature();
-//    	log.error("Exception in {}() with message = {}", codeSignature.getDeclaringTypeName(), ex.getMessage());
-//    	ApiLog apiLog = new ApiLog();
-//	    apiLog.setCalledTime(Calendar.getInstance().getTime());
-//	    apiLog.setErrorMessage(ex.getMessage());
-//	    apiLog.setRetryNum(1);
-//	    List<String> args = new ArrayList<>();
-//	    String[] argNames = codeSignature.getParameterNames();
-//	    Object[] argValues = joinPoint.getArgs();
-//    	for (int i = 0; i < argNames.length; i++) {
-//    		args.add(argNames[i] + ":" + argValues[i].toString());
-//    	}
-//    	apiLog.setData(String.join(", ", args));
-//    	apiLogService.saveApiLog(apiLog);
-//    	log.error(String.join(", ", args));
-//    }
+
+    @AfterThrowing (pointcut = "service()", throwing = "ex")
+    public void logAfterThrowing(JoinPoint joinPoint, Throwable ex) throws IllegalAccessException {
+    	CodeSignature codeSignature = (CodeSignature) joinPoint.getSignature();
+    	log.error("Exception in {}() with message = {}", codeSignature.getDeclaringTypeName(), ex.getMessage());
+    	ApiLog apiLog = new ApiLog();
+	    apiLog.setCalledTime(Calendar.getInstance().getTime());
+	    apiLog.setErrorMessage(ex.getMessage());
+	    apiLog.setRetryNum(1);
+	    List<String> args = new ArrayList<>();
+	    String[] argNames = codeSignature.getParameterNames();
+	    Object[] argValues = joinPoint.getArgs();
+    	for (int i = 0; i < argNames.length; i++) {
+    		args.add(argNames[i] + ":" + argValues[i].toString());
+    	}
+    	apiLog.setData(String.join(", ", args));
+    	apiLogService.saveApiLog(apiLog);
+    	log.error(String.join(", ", args));
+    }
     
 }
