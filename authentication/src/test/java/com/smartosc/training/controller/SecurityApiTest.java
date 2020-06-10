@@ -44,7 +44,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @created_by Hieupv
  * @since 04/06/2020
  */
-@WebMvcTest(controllers = SecurityApiTest.class)
+@WebMvcTest(controllers = SecurityApi.class)
 @ActiveProfiles("test")
 public class SecurityApiTest {
     private MockMvc mockMvc;
@@ -89,7 +89,14 @@ public class SecurityApiTest {
         this.mockMvc.perform(post("/api/authenticate")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(jwtRequest)))
-                .andExpect(status().isOk())
-                .andExpect();
+                .andExpect(status().isOk());
+    }
+    @Test
+    public void authenticationFails() throws Exception {
+        ObjectMapper objectMapper = new ObjectMapper();
+        lenient().when(userDetailsService.loadUserByUsername("admin")).thenReturn(null);
+        this.mockMvc.perform(post("/api/authenticate"))
+                .andExpect(status().isBadRequest());
+
     }
 }
