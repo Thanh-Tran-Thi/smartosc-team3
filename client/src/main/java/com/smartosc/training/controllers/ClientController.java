@@ -42,7 +42,8 @@ public class ClientController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createProduct(@RequestBody @Valid ProductDTO productDTO) {
-        return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(), "success" , productService.save(productDTO)), HttpStatus.OK);
+    public ResponseEntity<?> createProduct(@RequestBody @Valid ProductDTO productDTO, @RequestHeader(value="Authorization") String token) {
+        System.out.println(token);
+        return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(), "success" , productService.save(productDTO, token)), HttpStatus.OK);
     }
 }

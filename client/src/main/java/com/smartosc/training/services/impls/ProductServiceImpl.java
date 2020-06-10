@@ -10,6 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 import java.util.List;
 
@@ -50,10 +51,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductDTO save(ProductDTO product) {
+    public ProductDTO save(ProductDTO product, String token) {
         String url = preFixUrl.concat(productApi);
         HttpHeaders header = new HttpHeaders();
         header.setContentType(MediaType.APPLICATION_JSON);
+        String rawToken = token.substring(7);
+        header.setBearerAuth(rawToken);
         return restService.getSomething(url, HttpMethod.POST, header, product, new ParameterizedTypeReference<APIResponse<ProductDTO>>() {});
     }
 

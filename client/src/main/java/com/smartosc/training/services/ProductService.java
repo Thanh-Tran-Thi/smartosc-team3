@@ -13,7 +13,7 @@ import java.util.List;
 public interface ProductService {
     List<ProductDTO> getAll();
     ProductDTO getById(Long id);
-    ProductDTO save(ProductDTO product);
+    ProductDTO save(ProductDTO product, String token);
     ProductDTO update(ProductDTO productDTO);
     void delete(Long id);
 }
