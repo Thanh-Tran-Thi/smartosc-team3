@@ -104,8 +104,5 @@ public class SecurityApiTest {
         lenient().when(userDetailsService.loadUserByUsername("admin")).thenReturn(null);
         this.mockMvc.perform(post("/api/authenticate"))
                 .andExpect(status().isBadRequest());
-
-
-
     }
 }

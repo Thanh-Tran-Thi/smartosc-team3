@@ -23,13 +23,13 @@ import java.util.List;
  */
 @Service
 public class UserServiceImpl {
-    @Value("${services.hotsName}")
+    @Value("${services.hostName}")
     private String hostName;
     @Value("${services.userAPI}")
     private String apiName;
 
     @Autowired
-    private RestTemplateServiceImpl restemplateService;
+    private RestServiceImpl restemplateService;
 
     public List<UserDTO> findAllUser(){
         String url = hostName.concat(apiName);

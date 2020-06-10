@@ -9,9 +9,9 @@ package com.smartosc.training;
  */
 
 @SpringBootApplication
-public class PaymentServiceApplication {
+public class ClientServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(PaymentServiceApplication.class, args);
+        SpringApplication.run(ClientServiceApplication.class, args);
     }
 }
