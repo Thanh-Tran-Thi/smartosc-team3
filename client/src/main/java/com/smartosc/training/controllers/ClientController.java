@@ -33,7 +33,10 @@ public class ClientController {
     @GetMapping
     @PermitAll
     public ResponseEntity<?> getAllProduct() {
-        return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(), "success" , productService.getAll()), HttpStatus.OK);
+        return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(),
+                "success" ,
+                productService.getAll()),
+                HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

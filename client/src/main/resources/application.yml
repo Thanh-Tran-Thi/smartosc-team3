@@ -10,4 +10,7 @@ services:
     roleAPI : /role
     token : /api/authenticate
 
+jwt:
+    secret: "mysecret"
+
 
