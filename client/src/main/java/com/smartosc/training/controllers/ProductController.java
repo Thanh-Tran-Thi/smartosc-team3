@@ -32,13 +32,16 @@ public class ProductController {
 
     @GetMapping
     @PermitAll
-    public ResponseEntity<?> getAllProduct() {
-        return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(), "success" , productService.getAll()), HttpStatus.OK);
+    public ResponseEntity<?> getAllProduct(@RequestHeader(value="Authorization") String token) {
+        return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(),
+                "success" ,
+                productService.getAll(token)),
+                HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getProductById(@PathVariable("id")Long id) {
-        return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(), "success" , productService.getById(id)), HttpStatus.OK);
+    public ResponseEntity<?> getProductById(@PathVariable("id")Long id, @RequestHeader(value="Authorization") String token) {
+        return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(), "success" , productService.getById(id, token)), HttpStatus.OK);
     }
 
     @PostMapping

@@ -35,18 +35,22 @@ public class ProductServiceImpl implements ProductService {
     private AuthenticateServiceImpl authenticateService;
 
     @Override
-    public List<ProductDTO> getAll() {
+    public List<ProductDTO> getAll(String token) {
         String url = preFixUrl.concat(productApi);
         HttpHeaders header = new HttpHeaders();
         header.setContentType(MediaType.APPLICATION_JSON);
+        String rawToken = token.substring(7);
+        header.setBearerAuth(rawToken);
         return restService.getSomething(url, HttpMethod.GET, header, null, new ParameterizedTypeReference<APIResponse<List<ProductDTO>>>() {});
     }
 
     @Override
-    public ProductDTO getById(Long id) {
+    public ProductDTO getById(Long id, String token) {
         String url = preFixUrl.concat(productApi).concat("/" + id);
         HttpHeaders header = new HttpHeaders();
         header.setContentType(MediaType.APPLICATION_JSON);
+        String rawToken = token.substring(7);
+        header.setBearerAuth(rawToken);
         return restService.getSomething(url, HttpMethod.GET, header, null, new ParameterizedTypeReference<APIResponse<ProductDTO>>() {});
     }
 

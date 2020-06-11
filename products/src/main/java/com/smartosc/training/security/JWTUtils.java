@@ -1,4 +1,4 @@
-package com.smartosc.training.security.utils;
+package com.smartosc.training.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

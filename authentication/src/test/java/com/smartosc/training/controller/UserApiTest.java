@@ -3,6 +3,7 @@ package com.smartosc.training.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.smartosc.training.apis.UserApi;
 import com.smartosc.training.dtos.UserDTO;
+import com.smartosc.training.dtos.request.UserRequest;
 import com.smartosc.training.repositories.RoleRepository;
 import com.smartosc.training.repositories.UserRepository;
 import com.smartosc.training.security.config.JWTAuthenticationEntryPoint;
@@ -19,6 +20,7 @@ import org.mockito.Mock;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -28,9 +30,16 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import javax.sql.DataSource;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.lenient;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.hamcrest.Matchers.is;
 
 /**
  * smartosc-team3
@@ -40,53 +49,91 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @created_by Hieupv
  * @since 10/06/2020
  */
-@WebMvcTest(controllers = UserApi.class)
-@ActiveProfiles("testUserController")
+@SpringBootTest
 public class UserApiTest {
     private MockMvc mockMvc;
 
-    @MockBean
+    @Mock
     private UserService userService;
-    @MockBean
+    @Mock
     private JwtUserDetailServiceImpl userDetailsService;
-    @MockBean
+    @Mock
     private AuthenticationManager authenticationManager;
-    @MockBean
+    @Mock
     private JWTUtils jwtTokenUtil;
-    @MockBean
+    @Mock
     DataSource dataSource;
-    @MockBean
+    @Mock
     private JWTAuthenticationEntryPoint jwtAuthenticationEntryPoint;
-    @MockBean
+    @Mock
     private RequestFilter requestFilter;
-    @MockBean
-    private RoleRepository roleRepository;
-    @MockBean
-    private UserRepository userRepository;
-    @MockBean
-    private ModelMapper modelMapper;
 
     @InjectMocks
     private UserApi userApi;
 
     private UserDTO userDTO;
+    private UserRequest userRequest;
+    private List<UserDTO> userDTOList;
+    private ObjectMapper objectMapper;
+    private String url;
 
     @BeforeEach
     public void setUp() {
+        url = "/api/user";
         userDTO = new UserDTO("admin","123","admin","abc@gmail.com");
+        userDTOList = new ArrayList<>();
+        userDTOList.add(userDTO);
+
+        userRequest = new UserRequest("admin","123","123", "admin", "abc@gmail.com");
 
         this.mockMvc = MockMvcBuilders.standaloneSetup(userApi)
                 .build();
+        objectMapper = new ObjectMapper();
     }
 
     //findbyid
     @Test
     public void findUserById() throws Exception {
-        ObjectMapper objectMapper = new ObjectMapper();
         Long id = 1L;
         lenient().when(userService.findUserById(id)).thenReturn(userDTO);
-        this.mockMvc.perform(get("/api/user/{id}",id)
+        this.mockMvc.perform(get(url+"/{id}",id)
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.data.username",is(userDTO.getUsername())));
+
+    }
+
+    //findAllUser
+    @Test
+    public void findAllUser() throws Exception {
+        lenient().when(userService.findAllUser()).thenReturn(userDTOList);
+        this.mockMvc.perform(get(url)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.data.size()",is(userDTOList.size())));
+    }
+
+    //createNewUser
+    @Test
+    public void createNewUser() throws Exception {
+        lenient().when(userService.createNewUser(any())).thenReturn(userDTO);
+        this.mockMvc.perform(post(url)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsBytes(userRequest)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.data.username",is(userDTO.getUsername())));
+
+    }
+
+    //updateUser
+    @Test
+    public void updateUser() throws Exception {
+        lenient().when(userService.updateUser(any())).thenReturn(userDTO);
+        this.mockMvc.perform(put(url)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsBytes(userRequest)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.data.username",is(userDTO.getUsername())));
+
     }
 }
