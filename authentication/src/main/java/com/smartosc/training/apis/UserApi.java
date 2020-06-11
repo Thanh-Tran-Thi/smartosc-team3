@@ -48,11 +48,11 @@ public class UserApi {
     public ResponseEntity<?> createNewUser(@RequestBody @Valid UserRequest model) throws MethodArgumentNotValidException {
         UserDTO userDTO = new UserDTO();
         userDTO = userService.createNewUser(model);
-        return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(), "success",userDTO), HttpStatus.OK);
+        return new ResponseEntity<>(new APIResponse<UserDTO>(HttpStatus.OK.value(), "success",userDTO), HttpStatus.OK);
     }
 
     @PutMapping
     public ResponseEntity<?> updateUser(@RequestBody @Valid UserRequest model) throws NotFoundException {
-        return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(), "success", userService.updateUser(model)), HttpStatus.OK);
+        return new ResponseEntity<>(new APIResponse<UserDTO>(HttpStatus.OK.value(), "success", userService.updateUser(model)), HttpStatus.OK);
     }
 }
