@@ -25,7 +25,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api/products")
-public class ClientController {
+public class ProductController {
 
     @Autowired
     private ProductService productService;
@@ -42,7 +42,17 @@ public class ClientController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createProduct(@RequestBody @Valid ProductDTO productDTO) {
-        return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(), "success" , productService.save(productDTO)), HttpStatus.OK);
+    public ResponseEntity<?> createProduct(@RequestBody @Valid ProductDTO productDTO, @RequestHeader(value="Authorization") String token) {
+        return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(), "success" , productService.save(productDTO, token)), HttpStatus.OK);
+    }
+
+    @PutMapping
+    public ResponseEntity<?> updateProduct(@RequestBody @Valid ProductDTO productDTO, @RequestHeader(value="Authorization") String token) {
+        return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(), "success" , productService.update(productDTO, token)), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteProductById(@PathVariable("id")Long id, @RequestHeader(value="Authorization") String token) {
+        return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(), "success" , productService.delete(id, token)), HttpStatus.OK);
     }
 }

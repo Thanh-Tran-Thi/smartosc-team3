@@ -19,9 +19,7 @@ import org.springframework.web.bind.annotation.*;
 public class RestApi {
     @Autowired
     private AuthenticateServiceImpl userService;
-
-
-
+    
     @PostMapping
     public String createNewUser(@RequestBody JwtRequest model) throws MethodArgumentNotValidException {
         return userService.getToken(model);
