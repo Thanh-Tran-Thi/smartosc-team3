@@ -14,6 +14,6 @@ public interface ProductService {
     List<ProductDTO> getAll();
     ProductDTO getById(Long id);
     ProductDTO save(ProductDTO product, String token);
-    ProductDTO update(ProductDTO productDTO);
-    void delete(Long id);
+    ProductDTO update(ProductDTO productDTO, String token);
+    Boolean delete(Long id, String token);
 }
