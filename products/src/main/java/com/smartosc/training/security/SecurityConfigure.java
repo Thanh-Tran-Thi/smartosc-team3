@@ -24,7 +24,9 @@ public class SecurityConfigure extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PUT, "/api/products/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
                 .antMatchers(HttpMethod.GET, "/api/categories/**").hasAnyAuthority("ROLE_USER")
                 .antMatchers(HttpMethod.POST, "/api/categories/**").hasAnyAuthority("ROLE_USER")
-                .antMatchers(HttpMethod.PUT, "/api/categories/**").hasAnyAuthority("ROLE_USER");
+                .antMatchers(HttpMethod.PUT, "/api/categories/**").hasAnyAuthority("ROLE_USER")
+                .anyRequest().permitAll()
+        ;
     }
 
     @Override
