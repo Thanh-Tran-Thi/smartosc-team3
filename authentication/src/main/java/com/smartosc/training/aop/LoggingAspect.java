@@ -29,11 +29,11 @@ public class LoggingAspect
     public void service() {
     }
 
-//    @Around("@annotation(LogExecutionTime)")
-//    public Object aroundServiceMethod(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-//        Object result = proceedingJoinPoint.proceed();
-//        return result;
-//    }
+    @Around("@annotation(Deprecated)")
+    public Object aroundServiceMethod(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+        Object result = proceedingJoinPoint.proceed();
+        return result;
+    }
 //
 //    @AfterThrowing (pointcut = "service()", throwing = "ex")
 //    public void logAfterThrowing(JoinPoint joinPoint, Throwable ex) throws IllegalAccessException {
