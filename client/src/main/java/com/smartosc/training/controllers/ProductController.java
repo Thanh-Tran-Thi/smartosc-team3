@@ -3,19 +3,13 @@ package com.smartosc.training.controllers;
 import com.smartosc.training.dtos.APIResponse;
 import com.smartosc.training.dtos.ProductDTO;
 import com.smartosc.training.services.ProductService;
-import com.smartosc.training.services.impls.AuthenticateServiceImpl;
-import com.smartosc.training.services.impls.RestServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.PermitAll;
 import javax.validation.Valid;
-import java.util.List;
 
 /**
  * client

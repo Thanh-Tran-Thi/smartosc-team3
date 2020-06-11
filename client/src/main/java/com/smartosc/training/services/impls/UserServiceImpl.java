@@ -23,7 +23,7 @@ import java.util.List;
  */
 @Service
 public class UserServiceImpl {
-    @Value("${services.hostName}")
+    @Value("${services.hostNameAuthentication}")
     private String hostName;
     @Value("${services.userAPI}")
     private String apiName;

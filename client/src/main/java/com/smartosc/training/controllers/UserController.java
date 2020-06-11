@@ -1,4 +1,4 @@
-package com.smartosc.training.apis;
+package com.smartosc.training.controllers;
 
 import com.smartosc.training.dtos.APIResponse;
 import com.smartosc.training.dtos.UserDTO;
@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -22,8 +23,8 @@ import java.util.List;
  * @since 05/06/2020
  */
 @RestController
-@RequestMapping(value = "/user")
-public class UserApi {
+@RequestMapping(value = "/api/user")
+public class UserController {
     @Autowired
     private UserServiceImpl userService;
 

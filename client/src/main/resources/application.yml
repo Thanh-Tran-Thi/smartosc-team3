@@ -3,9 +3,12 @@ server:
 
 #api
 services:
+
     hostName : http://localhost:8001
     productAPI : /api/products
     categoryAPI : /api/categories
+
+    hostNameAuthentication : http://localhost:8002
     userAPI : /api/user
     roleAPI : /api/role
     token : /api/authenticate
