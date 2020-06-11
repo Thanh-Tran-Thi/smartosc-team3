@@ -7,7 +7,7 @@ services:
     productAPI : /api/products
     categoryAPI : /api/categories
     userAPI : /api/user
-    roleAPI : /role
+    roleAPI : /api/role
     token : /api/authenticate
 
 jwt:

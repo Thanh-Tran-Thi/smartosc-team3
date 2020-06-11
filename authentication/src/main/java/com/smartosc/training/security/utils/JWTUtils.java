@@ -72,7 +72,6 @@ public class JWTUtils implements Serializable {
 				.setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
 				.signWith(SignatureAlgorithm.HS512, secret) // sign JWT to algorithm
-				.claim("user", userDetails)
 				.compact();
 	}
 	//validate token
