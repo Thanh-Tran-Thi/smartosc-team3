@@ -1,5 +1,6 @@
 package com.smartosc.training.services.implementations;
 
+import com.smartosc.training.controllers.ProductController;
 import com.smartosc.training.dto.CategoryDTO;
 import com.smartosc.training.dto.ProductDTO;
 import com.smartosc.training.entities.Category;
@@ -9,6 +10,8 @@ import com.smartosc.training.exceptions.ProductNotFoundException;
 import com.smartosc.training.repositories.CategoryRepository;
 import com.smartosc.training.repositories.ProductRepository;
 import com.smartosc.training.services.ProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +28,8 @@ import java.util.Optional;
 @Service
 public class ProductServiceImpl implements ProductService {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
+
     @Autowired
     ProductRepository repository;
 
@@ -38,6 +43,7 @@ public class ProductServiceImpl implements ProductService {
         List<ProductDTO> productDTOS = new ArrayList<>();
 
         if (products.isEmpty()) {
+            LOGGER.info("Product Service:Can't get all. No product available");
             throw new NullPointerException("No available");
         }
         for (Product product : products) {
@@ -67,6 +73,7 @@ public class ProductServiceImpl implements ProductService {
         Optional<Product> product = repository.findById(id);
         ProductDTO productDTO = new ProductDTO();
         if (!product.isPresent()) {
+            LOGGER.error("Product Service: Can't get product by id. Product id " + id +" is not exist");
             throw new NullPointerException("Product is not existed ");
         }
         try {
@@ -97,6 +104,7 @@ public class ProductServiceImpl implements ProductService {
         String name = productDTO.getName();
         Optional<Product> productOptional = repository.findByName(name);
         if (productOptional.isPresent()) {
+            LOGGER.error("Product Service: Can't create Product id " + productDTO.getName() +" already exist");
             throw new ProductDuplicateException("Product with name " + productDTO.getName() + " already exists");
         }
         Product product = new Product();
@@ -136,6 +144,7 @@ public class ProductServiceImpl implements ProductService {
             product1.setCategories(categoryList);
             repository.save(product1);
         } else {
+            LOGGER.error("Product Service: Can't update. Product id " + productDTO.getId() +" not found");
             throw new ProductNotFoundException("Not found. Product with ID - " + productDTO.getId() + "not is existed. Can't update");
         }
         return productDTO;
@@ -146,6 +155,7 @@ public class ProductServiceImpl implements ProductService {
         if (repository.findById(id).isPresent()) {
             repository.deleteById(id);
         } else {
+            LOGGER.error("Product Service: Can't delete. Id " + id +" not found");
             throw new ProductNotFoundException("Not found. Product with ID - " + id + "not is existed. Can't delete");
         }
     }
