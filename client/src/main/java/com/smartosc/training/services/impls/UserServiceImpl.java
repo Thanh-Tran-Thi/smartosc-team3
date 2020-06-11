@@ -2,6 +2,7 @@ package com.smartosc.training.services.impls;
 
 import com.smartosc.training.dtos.APIResponse;
 import com.smartosc.training.dtos.UserDTO;
+import com.smartosc.training.dtos.UserRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -23,7 +24,7 @@ import java.util.List;
  */
 @Service
 public class UserServiceImpl {
-    @Value("${services.hostName}")
+    @Value("${services.hostNameAuthentication}")
     private String hostName;
     @Value("${services.userAPI}")
     private String apiName;
@@ -31,24 +32,26 @@ public class UserServiceImpl {
     @Autowired
     private RestServiceImpl restemplateService;
 
-    public List<UserDTO> findAllUser(){
+    public List<UserDTO> findAllUser(String token){
         String url = hostName.concat(apiName);
         HttpHeaders header = new HttpHeaders();
         header.setContentType(MediaType.APPLICATION_JSON);
-        //header.setBearerAuth(SecurityUtil.getJWTToken());
+        header.setBearerAuth(token.substring(7));
         return  restemplateService.getSomething(url, HttpMethod.GET, header, null, new ParameterizedTypeReference<APIResponse<List<UserDTO>>>() {});
     }
-    public UserDTO createNewUser(UserDTO model){
-        String url = hostName + apiName+"/register";
-        HttpHeaders header = new HttpHeaders();
-        //header.setBearerAuth(SecurityUtil.getJWTToken());
-        return  restemplateService.getSomething(url, HttpMethod.POST, header, null, new ParameterizedTypeReference<APIResponse<UserDTO>>() {});
-    }
-    public UserDTO updateUser(UserDTO model){
+    public UserDTO createNewUser(UserRequest model, String token){
         String url = hostName + apiName;
         HttpHeaders header = new HttpHeaders();
-        //header.setBearerAuth(SecurityUtil.getJWTToken());
-        return restemplateService.getSomething(url, HttpMethod.GET, header, null, new ParameterizedTypeReference<APIResponse<UserDTO>>() {});
+        header.setContentType(MediaType.APPLICATION_JSON);
+        header.setBearerAuth(token.substring(7));
+        return  restemplateService.getSomething(url, HttpMethod.POST, header, model, new ParameterizedTypeReference<APIResponse<UserDTO>>() {});
+    }
+    public UserDTO updateUser(UserRequest model , String token){
+        String url = hostName + apiName;
+        HttpHeaders header = new HttpHeaders();
+        header.setContentType(MediaType.APPLICATION_JSON);
+        header.setBearerAuth(token.substring(7));
+        return restemplateService.getSomething(url, HttpMethod.PUT, header, model, new ParameterizedTypeReference<APIResponse<UserDTO>>() {});
     }
     public UserDTO findUserById(Long id, String token){
         String url = hostName.concat(apiName).concat("/"+id);

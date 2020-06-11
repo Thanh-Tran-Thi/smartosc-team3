@@ -36,17 +36,21 @@ public class CategoryServiceImpl implements CategoryService {
     private AuthenticateServiceImpl authenticateService;
 
     @Override
-    public List<CategoryDTO> listAll() {
+    public List<CategoryDTO> listAll(String token) {
         String url = preFixUrl.concat(categoryApi);
         HttpHeaders header = new HttpHeaders();
         header.setContentType(MediaType.APPLICATION_JSON);
+        String rawToken = token.substring(7);
+        header.setBearerAuth(rawToken);
         return restService.getSomething(url, HttpMethod.GET, header, null, new ParameterizedTypeReference<APIResponse<List<CategoryDTO>>>() {});    }
 
     @Override
-    public CategoryDTO getCategoryById(Long id) {
+    public CategoryDTO getCategoryById(Long id, String token) {
         String url = preFixUrl.concat(categoryApi).concat("/" + id).concat("/products");
         HttpHeaders header = new HttpHeaders();
         header.setContentType(MediaType.APPLICATION_JSON);
+        String rawToken = token.substring(7);
+        header.setBearerAuth(rawToken);
         return restService.getSomething(url, HttpMethod.GET, header, null, new ParameterizedTypeReference<APIResponse<CategoryDTO>>() {});    }
 
     @Override

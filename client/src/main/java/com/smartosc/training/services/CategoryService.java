@@ -11,8 +11,8 @@ import java.util.List;
  * @created_at 11/06/2020 - 10:18 AM
  */
 public interface CategoryService {
-    List<CategoryDTO> listAll();
-    CategoryDTO getCategoryById(Long id);
+    List<CategoryDTO> listAll(String token);
+    CategoryDTO getCategoryById(Long id, String token);
     CategoryDTO saveCategory(CategoryDTO category, String token);
     CategoryDTO updateCategory(CategoryDTO categoryDTO, String token);
 }

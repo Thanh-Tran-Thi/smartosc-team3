@@ -20,7 +20,7 @@ import java.util.Collections;
  */
 @Service
 public class AuthenticateServiceImpl {
-    @Value("${services.hostName}")
+    @Value("${services.hostNameAuthentication}")
     private String hostName;
     @Value("${services.token}")
     private String apiName;

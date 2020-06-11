@@ -1,4 +1,4 @@
-package com.smartosc.training.apis;
+package com.smartosc.training.controllers;
 
 import com.smartosc.training.dtos.JwtRequest;
 import com.smartosc.training.services.impls.AuthenticateServiceImpl;
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.*;
  * @since 05/06/2020
  */
 @RestController
-@RequestMapping(value = "/authenticate")
-public class RestApi {
+@RequestMapping(value = "/api/authenticate")
+public class AuthenticateController {
     @Autowired
     private AuthenticateServiceImpl userService;
     
