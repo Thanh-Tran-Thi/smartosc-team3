@@ -10,6 +10,8 @@ import com.smartosc.training.exceptions.ProductDuplicateException;
 import com.smartosc.training.repositories.CategoryRepository;
 import com.smartosc.training.repositories.ProductRepository;
 import com.smartosc.training.services.CategoryService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,9 @@ import java.util.Optional;
  */
 @Service
 public class CategoryServiceImpl implements CategoryService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(CategoryServiceImpl.class);
+
     @Autowired
     CategoryRepository categoryRepository;
 
@@ -56,6 +61,7 @@ public class CategoryServiceImpl implements CategoryService {
             categoryDTO.setDescription(category.getDescription());
             categoryDTOS.add(categoryDTO);
         }
+        LOGGER.info("Category Service: Get all category successfully");
         return categoryDTOS;
     }
 
@@ -81,8 +87,10 @@ public class CategoryServiceImpl implements CategoryService {
             categoryDTO.setId(category.get().getId());
             categoryDTO.setDescription(category.get().getDescription());
         } else {
-            throw new NullPointerException("Category is not existed ");
+            LOGGER.error("Category Service: Category is not existed");
+            throw new NullPointerException("Category is not existed");
         }
+        LOGGER.info("Category Service: Get category by id " + id +" successfully");
         return categoryDTO;
     }
 
@@ -91,12 +99,14 @@ public class CategoryServiceImpl implements CategoryService {
         String name = categoryDTO.getName();
         Optional<Category> categoryOptional = categoryRepository.findByName(name);
         if (categoryOptional.isPresent()) {
+            LOGGER.error("Category Service: Can't update. Category with name " + categoryDTO.getName() + " not existed");
             throw new ProductDuplicateException("Category with name " + categoryDTO.getName() + " already exists");
         }
         Category category = new Category();
         category.setName(categoryDTO.getName());
         category.setDescription(categoryDTO.getDescription());
         categoryRepository.save(category);
+        LOGGER.info("Category Service: Create Category " + categoryDTO.toString() +" successfully");
         return categoryDTO;
     }
 
@@ -118,8 +128,10 @@ public class CategoryServiceImpl implements CategoryService {
             category1.setDescription(dto.getDescription());
             category1.setProducts(productList);
             categoryRepository.save(category1);
+            LOGGER.info("Category Service: Update Category " + dto.toString() +" successfully");
             return dto;
         } else {
+            LOGGER.error("Category Service: Category with ID - " + dto.getId() + "not is existed. Can't update");
             throw new CategoryNotFoundException("Not found. Category with ID - " + dto.getId() + "not is existed. Can't update");
         }
     }

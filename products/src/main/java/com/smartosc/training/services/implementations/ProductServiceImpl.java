@@ -1,6 +1,5 @@
 package com.smartosc.training.services.implementations;
 
-import com.smartosc.training.controllers.ProductController;
 import com.smartosc.training.dto.CategoryDTO;
 import com.smartosc.training.dto.ProductDTO;
 import com.smartosc.training.entities.Category;
@@ -28,7 +27,7 @@ import java.util.Optional;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductServiceImpl.class);
 
     @Autowired
     ProductRepository repository;
@@ -43,8 +42,8 @@ public class ProductServiceImpl implements ProductService {
         List<ProductDTO> productDTOS = new ArrayList<>();
 
         if (products.isEmpty()) {
-            LOGGER.info("Product Service:Can't get all. No product available");
-            throw new NullPointerException("No available");
+            LOGGER.error("Product Service: Can't get all. No product available");
+            throw new NullPointerException("Product Service: No available product");
         }
         for (Product product : products) {
             List<Category> categories = product.getCategories();
@@ -65,6 +64,7 @@ public class ProductServiceImpl implements ProductService {
             productDTO.setPrice(product.getPrice());
             productDTOS.add(productDTO);
         }
+        LOGGER.info("Product Service: Get all product successfully");
         return productDTOS;
     }
 
@@ -92,6 +92,7 @@ public class ProductServiceImpl implements ProductService {
             productDTO.setDescription(product.get().getDescription());
             productDTO.setPrice(product.get().getPrice());
             productDTO.setImage(product.get().getImage());
+            LOGGER.info("Product Service: Get product by id " + id +" successfully");
             return productDTO;
         } catch (Exception e) {
             e.printStackTrace();
@@ -124,6 +125,7 @@ public class ProductServiceImpl implements ProductService {
         product.setPrice(productDTO.getPrice());
         product.setImage(productDTO.getImage());
         repository.save(product);
+        LOGGER.info("Product Service: Create Product " + productDTO.toString() +" successfully");
         return productDTO;
     }
 
@@ -143,6 +145,7 @@ public class ProductServiceImpl implements ProductService {
             product1.setName(productDTO.getName());
             product1.setCategories(categoryList);
             repository.save(product1);
+            LOGGER.info("Product Service: Update Product " + productDTO.toString() +" successfully");
         } else {
             LOGGER.error("Product Service: Can't update. Product id " + productDTO.getId() +" not found");
             throw new ProductNotFoundException("Not found. Product with ID - " + productDTO.getId() + "not is existed. Can't update");
@@ -154,6 +157,7 @@ public class ProductServiceImpl implements ProductService {
     public void delete(Long id) {
         if (repository.findById(id).isPresent()) {
             repository.deleteById(id);
+            LOGGER.info("Product Service: Delete Id " + id +" successfully");
         } else {
             LOGGER.error("Product Service: Can't delete. Id " + id +" not found");
             throw new ProductNotFoundException("Not found. Product with ID - " + id + "not is existed. Can't delete");

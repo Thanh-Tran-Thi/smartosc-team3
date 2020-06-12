@@ -29,4 +29,11 @@ public class CategoryProductDTO {
         this.description = description;
     }
 
+    @Override
+    public String toString() {
+        return "CategoryProductDTO{" +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }
