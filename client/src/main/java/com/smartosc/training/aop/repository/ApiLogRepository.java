@@ -1,6 +1,6 @@
-package com.smartosc.training.repositories;
+package com.smartosc.training.aop.repository;
 
-import com.smartosc.training.entities.ApiLog;
+import com.smartosc.training.aop.entity.ApiLog;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

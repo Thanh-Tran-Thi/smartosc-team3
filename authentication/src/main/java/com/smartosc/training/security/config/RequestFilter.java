@@ -20,10 +20,10 @@ import java.io.IOException;
 public class RequestFilter extends OncePerRequestFilter {
 	@Autowired
 	private JwtUserDetailServiceImpl jwtUserDetailService;
-	
+
 	@Autowired
 	private JWTUtils jwtTokenUtils;
-	
+
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws ServletException, IOException {

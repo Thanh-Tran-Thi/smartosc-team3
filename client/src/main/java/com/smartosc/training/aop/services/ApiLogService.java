@@ -1,7 +1,7 @@
-package com.smartosc.training.services.impls;
+package com.smartosc.training.aop.services;
 
-import com.smartosc.training.entities.ApiLog;
-import com.smartosc.training.repositories.ApiLogRepository;
+import com.smartosc.training.aop.entity.ApiLog;
+import com.smartosc.training.aop.repository.ApiLogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import com.smartosc.training.aop.entity.ApiLog;
 import com.smartosc.training.aop.services.ApiLogService;
-import com.smartosc.training.entities.ApiLog;
+
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;

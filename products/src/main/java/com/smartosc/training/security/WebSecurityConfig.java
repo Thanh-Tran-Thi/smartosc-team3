@@ -25,8 +25,8 @@ import java.nio.charset.StandardCharsets;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-//	@Autowired
-//	private RequestFilter requestFilter;
+	@Autowired
+	private RequestFilter requestFilter;
 	
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
@@ -39,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	    		.anyRequest().permitAll();
 
 	    	
-//	    httpSecurity.addFilterBefore(requestFilter,UsernamePasswordAuthenticationFilter.class);
+	    httpSecurity.addFilterBefore(requestFilter,UsernamePasswordAuthenticationFilter.class);
 	}
 	
 	@Override
