@@ -9,6 +9,7 @@ import com.smartosc.training.repositories.UserRepository;
 import com.smartosc.training.security.utils.EncrytedPasswordUtil;
 import com.smartosc.training.services.UserService;
 import javassist.NotFoundException;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -27,6 +28,7 @@ import java.util.Optional;
  * @since 04/06/2020
  */
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService {
     @Autowired
     private RoleRepository roleRepository;
@@ -42,30 +44,32 @@ public class UserServiceImpl implements UserService {
             UserDTO dto = new UserDTO();
             dto = modelMapper.map(userEntity.get(), UserDTO.class);
             return dto;
-        }else{
+        } else {
             throw new NotFoundException("UnAuthorized");
         }
     }
 
     @Override
     public List<UserDTO> findAllUser() throws NotFoundException {
+
         List<UserDTO> results = new ArrayList<>();
         List<User> entities = userRepository.findAll();
-        if(entities!=null || !entities.isEmpty()) {
+        if (entities != null || !entities.isEmpty()) {
             for (User item : entities) {
                 UserDTO newDTO = modelMapper.map(item, UserDTO.class);
                 results.add(newDTO);
             }
             return results;
-        }else{
+        } else {
             throw new NotFoundException("không có dữ liệu");
         }
+
 
     }
 
     @Override
     public UserDTO createNewUser(UserRequest model) {
-        if(userRepository.findByUserName(model.getUsername()).isPresent()){
+        if (userRepository.findByUserName(model.getUsername()).isPresent()) {
             throw new DuplicateKeyException("Người dùng đã tồn tại");
         }
         model.setPassword(EncrytedPasswordUtil.encrytePassword(model.getPassword()));
@@ -85,7 +89,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO updateUser(UserRequest model) throws NotFoundException {
         Optional<User> oldUser = userRepository.findById(model.getId());
-        if(oldUser.isPresent()){
+        if (oldUser.isPresent()) {
             if (String.valueOf(model.getStatus()) == null) {
                 model.setStatus(0);
             }
@@ -94,8 +98,7 @@ public class UserServiceImpl implements UserService {
             modelMapper.map(model, user);
             User newUser = userRepository.save(user);
             return modelMapper.map(newUser, UserDTO.class);
-        }
-        else{
+        } else {
             throw new NotFoundException("KHông tìm thấy dữ liệu");
         }
     }
@@ -104,9 +107,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO findUserById(Long id) throws NotFoundException {
         Optional<User> userOptional = userRepository.findById(id);
-        if(userOptional.isPresent()){
+        if (userOptional.isPresent()) {
             return modelMapper.map(userOptional.get(), UserDTO.class);
-        }else{
+        } else {
             throw new NotFoundException("KHông tìm thấy dữ liệu");
         }
     }
