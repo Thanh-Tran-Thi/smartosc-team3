@@ -2,18 +2,14 @@ package com.smartosc.training.apis;
 
 import com.smartosc.training.dtos.APIResponse;
 import com.smartosc.training.dtos.RoleDTO;
-import com.smartosc.training.dtos.UserDTO;
-import com.smartosc.training.dtos.request.UserRequest;
 import com.smartosc.training.services.RoleService;
-import com.smartosc.training.services.UserService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+
 import java.util.ArrayList;
 import java.util.List;
 
