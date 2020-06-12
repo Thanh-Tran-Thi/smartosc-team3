@@ -17,7 +17,7 @@ public class ConfirmPasswordValidator implements ConstraintValidator<ConfirmPass
     private String field;
     private String fieldMatch;
     private String message;
-
+    @Override
     public void initialize(ConfirmPassword constraintAnnotation) {
         this.field = constraintAnnotation.field();
         this.fieldMatch = constraintAnnotation.fieldMatch();
