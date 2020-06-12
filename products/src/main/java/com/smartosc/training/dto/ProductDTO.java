@@ -41,4 +41,14 @@ public class ProductDTO {
     private BigDecimal price;
 
     private List<CategoryDTO> categories;
+
+    @Override
+    public String toString() {
+        return "ProductDTO{" +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", image='" + image + '\'' +
+                ", price=" + price +
+                '}';
+    }
 }

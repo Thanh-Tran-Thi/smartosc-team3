@@ -7,7 +7,14 @@ import com.smartosc.training.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -25,10 +32,10 @@ import java.util.List;
 public class CategoryController {
 
     @Autowired
-    CategoryService service;
+    private CategoryService service;
 
     @GetMapping
-    ResponseEntity<?> getAll() {
+    public ResponseEntity<?> getAll() {
         try {
             List<CategoryProductDTO> categories = new ArrayList<>();
             service.listAll().forEach(categories::add);
@@ -37,12 +44,12 @@ public class CategoryController {
             }
             return new ResponseEntity<>(new ApiResponse<>(new Date(), categories), HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @GetMapping(value = "/{id}/products")
-    ResponseEntity<?> getById(@PathVariable(name = "id") Long id) {
+    public ResponseEntity<?> getById(@PathVariable(name = "id") Long id) {
         CategoryProductDTO category = service.getById(id);
         if (category ==null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -52,13 +59,13 @@ public class CategoryController {
     }
 
     @PostMapping
-    ResponseEntity<?> createNew(@Valid @RequestBody CategoryDTO category) {
+    public ResponseEntity<?> createNew(@Valid @RequestBody CategoryDTO category) {
         service.save(category);
         return new ResponseEntity<>(new ApiResponse<>(new Date(), category), HttpStatus.CREATED);
     }
 
     @PutMapping
-    ResponseEntity<?> update(@RequestBody CategoryProductDTO input) {
+    public ResponseEntity<?> update(@RequestBody CategoryProductDTO input) {
         service.update(input);
         return new ResponseEntity<>(new ApiResponse<>(new Date(), input), HttpStatus.OK);
     }

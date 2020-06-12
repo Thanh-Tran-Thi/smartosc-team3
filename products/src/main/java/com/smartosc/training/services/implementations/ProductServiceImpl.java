@@ -9,6 +9,8 @@ import com.smartosc.training.exceptions.ProductNotFoundException;
 import com.smartosc.training.repositories.CategoryRepository;
 import com.smartosc.training.repositories.ProductRepository;
 import com.smartosc.training.services.ProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,8 @@ import java.util.Optional;
 @Service
 public class ProductServiceImpl implements ProductService {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductServiceImpl.class);
+
     @Autowired
     ProductRepository repository;
 
@@ -38,7 +42,8 @@ public class ProductServiceImpl implements ProductService {
         List<ProductDTO> productDTOS = new ArrayList<>();
 
         if (products.isEmpty()) {
-            throw new NullPointerException("No available");
+            LOGGER.error("Product Service: Can't get all. No product available");
+            throw new NullPointerException("Product Service: No available product");
         }
         for (Product product : products) {
             List<Category> categories = product.getCategories();
@@ -59,6 +64,7 @@ public class ProductServiceImpl implements ProductService {
             productDTO.setPrice(product.getPrice());
             productDTOS.add(productDTO);
         }
+        LOGGER.info("Product Service: Get all product successfully");
         return productDTOS;
     }
 
@@ -67,6 +73,7 @@ public class ProductServiceImpl implements ProductService {
         Optional<Product> product = repository.findById(id);
         ProductDTO productDTO = new ProductDTO();
         if (!product.isPresent()) {
+            LOGGER.error("Product Service: Can't get product by id. Product id " + id +" is not exist");
             throw new NullPointerException("Product is not existed ");
         }
         try {
@@ -85,6 +92,7 @@ public class ProductServiceImpl implements ProductService {
             productDTO.setDescription(product.get().getDescription());
             productDTO.setPrice(product.get().getPrice());
             productDTO.setImage(product.get().getImage());
+            LOGGER.info("Product Service: Get product by id " + id +" successfully");
             return productDTO;
         } catch (Exception e) {
             e.printStackTrace();
@@ -97,6 +105,7 @@ public class ProductServiceImpl implements ProductService {
         String name = productDTO.getName();
         Optional<Product> productOptional = repository.findByName(name);
         if (productOptional.isPresent()) {
+            LOGGER.error("Product Service: Can't create Product id " + productDTO.getName() +" already exist");
             throw new ProductDuplicateException("Product with name " + productDTO.getName() + " already exists");
         }
         Product product = new Product();
@@ -116,6 +125,7 @@ public class ProductServiceImpl implements ProductService {
         product.setPrice(productDTO.getPrice());
         product.setImage(productDTO.getImage());
         repository.save(product);
+        LOGGER.info("Product Service: Create Product " + productDTO.toString() +" successfully");
         return productDTO;
     }
 
@@ -135,7 +145,9 @@ public class ProductServiceImpl implements ProductService {
             product1.setName(productDTO.getName());
             product1.setCategories(categoryList);
             repository.save(product1);
+            LOGGER.info("Product Service: Update Product " + productDTO.toString() +" successfully");
         } else {
+            LOGGER.error("Product Service: Can't update. Product id " + productDTO.getId() +" not found");
             throw new ProductNotFoundException("Not found. Product with ID - " + productDTO.getId() + "not is existed. Can't update");
         }
         return productDTO;
@@ -145,7 +157,9 @@ public class ProductServiceImpl implements ProductService {
     public void delete(Long id) {
         if (repository.findById(id).isPresent()) {
             repository.deleteById(id);
+            LOGGER.info("Product Service: Delete Id " + id +" successfully");
         } else {
+            LOGGER.error("Product Service: Can't delete. Id " + id +" not found");
             throw new ProductNotFoundException("Not found. Product with ID - " + id + "not is existed. Can't delete");
         }
     }
