@@ -33,13 +33,13 @@ public class CategoryController {
 
     @GetMapping
     @PermitAll
-    public ResponseEntity<?> getAllCategory() {
-        return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(), "success" , categoryService.listAll()), HttpStatus.OK);
+    public ResponseEntity<?> getAllCategory(@RequestHeader(value="Authorization") String token) {
+        return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(), "success" , categoryService.listAll(token)), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getCategoryById(@PathVariable("id")Long id) {
-        return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(), "success" , categoryService.getCategoryById(id)), HttpStatus.OK);
+    public ResponseEntity<?> getCategoryById(@PathVariable("id")Long id, @RequestHeader(value="Authorization") String token) {
+        return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(), "success" , categoryService.getCategoryById(id, token)), HttpStatus.OK);
     }
 
     @PostMapping
