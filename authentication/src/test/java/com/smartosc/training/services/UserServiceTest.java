@@ -95,7 +95,7 @@ public class UserServiceTest {
 
     @Test
     public void findUserByUserNameFail(){
-        lenient().when(userRepository.findByUserName("user")).thenReturn(null);
+        lenient().when(userRepository.findByUserName("user")).thenThrow(NullPointerException.class);
         Assertions.assertThrows(NullPointerException.class,()->{
                 userService.findUserByUserName("user");
         });
@@ -116,7 +116,7 @@ public class UserServiceTest {
     @Test
     public void findAllUserFalse() throws NotFoundException {
         LOGGER.info("fake data for function findAllUser");
-        lenient().when(userRepository.findAll()).thenReturn(null);
+        lenient().when(userRepository.findAll()).thenThrow(NullPointerException.class);
 
         Assertions.assertThrows(NullPointerException.class,()->{
             userService.findAllUser();
