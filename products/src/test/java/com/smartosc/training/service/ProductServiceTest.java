@@ -99,11 +99,10 @@ class ProductServiceTest {
 
     @Test
     public void findByIdFailed(){
-        lenient().when(productRepository.findById(1L)).thenReturn(null);
+        lenient().when(productRepository.findById(1L)).thenReturn(Optional.empty());
         Assertions.assertThrows(NullPointerException.class,()->{
             productService.getById(1L);
         });
-        LOGGER.error("");
     }
 
     @Test

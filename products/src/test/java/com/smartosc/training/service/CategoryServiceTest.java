@@ -97,7 +97,12 @@ public class CategoryServiceTest {
 
     @Test
     void shouldFetchOneCategoryByIdSuccessfully() {
-        when(categoryRepository.findById(1L)).thenReturn(categoryOptional);
+        List<Product> productList = new ArrayList<>();
+        Product proOne = new Product(1L, "product 1", "This is product 1", "product_1.jpg", new BigDecimal("1.00"));
+        productList.add(proOne);
+        Optional<Category> category = Optional.of(new Category(1L, "category 1", "category 1", productList));
+        Long id = 1L;
+        when(categoryRepository.findById(id)).thenReturn(categoryOptional);
 
         CategoryProductDTO categoryProductDTO = categoryService.getById(1L);
         Assertions.assertEquals(categoryProductDTO.getName(), categoryOptional.get().getName());
@@ -105,7 +110,7 @@ public class CategoryServiceTest {
 
     @Test
     void shouldFetchOneCategoryByIdFailed() {
-        lenient().when(categoryRepository.findById(1L)).thenReturn(null);
+        lenient().when(categoryRepository.findById(1L)).thenReturn(Optional.empty());
         Assertions.assertThrows(NullPointerException.class,()->{
             categoryService.getById(1L);
         });

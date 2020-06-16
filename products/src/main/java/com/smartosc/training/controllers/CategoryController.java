@@ -36,22 +36,19 @@ public class CategoryController {
 
     @GetMapping
     public ResponseEntity<?> getAll() {
-        try {
-            List<CategoryProductDTO> categories = new ArrayList<>();
-            service.listAll().forEach(categories::add);
-            if (categories.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-            return new ResponseEntity<>(new ApiResponse<>(new Date(), categories), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        List<CategoryProductDTO> categories = new ArrayList<>();
+        service.listAll().forEach(categories::add);
+        if (categories.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
+        return new ResponseEntity<>(new ApiResponse<>(new Date(), categories), HttpStatus.OK);
+
     }
 
     @GetMapping(value = "/{id}/products")
     public ResponseEntity<?> getById(@PathVariable(name = "id") Long id) {
         CategoryProductDTO category = service.getById(id);
-        if (category ==null) {
+        if (category == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<>(new ApiResponse<>(new Date(), category), HttpStatus.OK);

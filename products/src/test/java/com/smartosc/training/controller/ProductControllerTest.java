@@ -16,6 +16,8 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.mockito.Matchers.any;
@@ -25,6 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.mockito.Mockito.when;
@@ -81,6 +84,13 @@ public class ProductControllerTest {
     }
 
     @Test
+    void findAllFailWith404() throws Exception {
+        when(productService.listAll()).thenReturn(new ArrayList<>());
+        this.mockMvc.perform(get("/api/products"))
+                .andExpect(status().isNoContent());
+    }
+
+    @Test
     void findByIdSuccessfully() throws Exception {
         final Long id = 1L;
         when(productService.getById(id)).thenReturn(productList.get(0));
@@ -89,7 +99,7 @@ public class ProductControllerTest {
                 .andExpect(jsonPath("$.data.name", is(productList.get(0).getName())));
     }
 
-    @Test
+    @Test()
     void shouldReturn404WhenFindProductById () throws Exception {
         final Long id = 1L;
         when(productService.getById(id)).thenReturn(null);

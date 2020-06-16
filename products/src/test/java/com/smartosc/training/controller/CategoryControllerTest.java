@@ -71,6 +71,13 @@ public class CategoryControllerTest {
     }
 
     @Test
+    void findAllFailWith404() throws Exception {
+        when(categoryService.listAll()).thenReturn(new ArrayList<>());
+        this.mockMvc.perform(get("/api/categories"))
+                .andExpect(status().isNoContent());
+    }
+
+    @Test
     void findByIdSuccessfully() throws Exception {
         final Long id = 1L;
         when(categoryService.getById(id)).thenReturn(categoryDTOList.get(0));
