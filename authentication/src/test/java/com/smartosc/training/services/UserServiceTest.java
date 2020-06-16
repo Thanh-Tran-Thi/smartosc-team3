@@ -95,8 +95,8 @@ public class UserServiceTest {
 
     @Test
     public void findUserByUserNameFail(){
-        lenient().when(userRepository.findByUserName("user")).thenThrow(NullPointerException.class);
-        Assertions.assertThrows(NullPointerException.class,()->{
+        lenient().when(userRepository.findByUserName("user")).thenReturn(Optional.empty());
+        Assertions.assertThrows(NotFoundException.class,()->{
                 userService.findUserByUserName("user");
         });
     }
@@ -116,9 +116,9 @@ public class UserServiceTest {
     @Test
     public void findAllUserFalse() throws NotFoundException {
         LOGGER.info("fake data for function findAllUser");
-        lenient().when(userRepository.findAll()).thenThrow(NullPointerException.class);
+        lenient().when(userRepository.findAll()).thenReturn(null);
 
-        Assertions.assertThrows(NullPointerException.class,()->{
+        Assertions.assertThrows(NotFoundException.class,()->{
             userService.findAllUser();
         });
     }
@@ -152,11 +152,11 @@ public class UserServiceTest {
     @Test
     public void updateUserSuccess() throws NotFoundException {
         LOGGER.info("fake data for function updateUser");
-        lenient().when(userRepository.findById(1L)).thenReturn(Optional.empty());
-        lenient().when(modelMapper.map(any(), any())).thenReturn(user.get()).thenReturn(userDTO);
+        lenient().when(userRepository.findById(user.get().getId())).thenReturn(user);
+        lenient().when(modelMapper.map(any(), any())).thenReturn(userDTO).thenReturn(user.get());
         lenient().when(userRepository.save(user.get())).thenReturn(user.get());
 
-        UserDTO userResult = userService.createNewUser(userRequest);
+        UserDTO userResult = userService.updateUser(userRequest);
 
         Assertions.assertEquals(userResult.getUsername(),userDTO.getUsername());
     }
@@ -164,7 +164,7 @@ public class UserServiceTest {
     @Test
     public void updateUserFalse() throws NotFoundException {
         LOGGER.info("fake data for function updateUser");
-        lenient().when(userRepository.findById(1L)).thenReturn(Optional.of(new User()));
+        lenient().when(userRepository.findById(1L)).thenReturn(Optional.empty());
 
         Assertions.assertThrows(NotFoundException.class,()->{
             userService.updateUser(userRequest);
@@ -189,7 +189,7 @@ public class UserServiceTest {
         LOGGER.info("fake data for function findUserById");
         lenient().when(userRepository.findById(1L)).thenReturn(Optional.empty());
 
-        Assertions.assertThrows(NotFoundException.class,()->{
+        Assertions.assertThrows(new NotFoundException("KHông tìm thấy dữ liệu").getClass(),()->{
             userService.findUserById(1L);
         });
     }

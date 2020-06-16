@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
 
         List<UserDTO> results = new ArrayList<>();
         List<User> entities = userRepository.findAll();
-        if (entities != null || !entities.isEmpty()) {
+        if (entities != null) {
             for (User item : entities) {
                 UserDTO newDTO = modelMapper.map(item, UserDTO.class);
                 results.add(newDTO);
