@@ -28,7 +28,7 @@ public class RestServiceImpl implements RestTemplateService {
 			LOOGER.error(res.getBody().getMessage());
 			throw new RestTempalteException(res.getBody().getMessage());
 		} catch (Exception e) {
-			throw new RestTempalteException(e.getMessage(), e);
+			throw new RestTempalteException(e.getMessage().split("\"")[13]);
 		}
 	}
 
@@ -60,7 +60,7 @@ public class RestServiceImpl implements RestTemplateService {
 			LOOGER.error(res.getBody());
 			throw new RestTempalteException(res.getBody());
 		} catch (Exception e) {
-			throw new RestTempalteException(e.getMessage(), e);
+			throw new RestTempalteException(e.getMessage().split("\"")[13]);
 		}
 	}
 
