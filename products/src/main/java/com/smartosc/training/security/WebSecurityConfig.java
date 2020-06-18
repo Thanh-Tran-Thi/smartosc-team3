@@ -25,27 +25,24 @@ import java.nio.charset.StandardCharsets;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-	@Autowired
-	private RequestFilter requestFilter;
-	
-	@Override
-	protected void configure(HttpSecurity httpSecurity) throws Exception {
-		
-		httpSecurity.csrf().disable()
-			.authorizeRequests()
-//	    		.antMatchers(HttpMethod.GET, "/api/user/**").hasAnyAuthority("ROLE_ADMIN","ROLE_USER")
-//	    		.antMatchers(HttpMethod.POST, "/api/user/**").hasAnyAuthority("ROLE_ADMIN","ROLE_USER")
-//				.antMatchers(HttpMethod.PUT, "/api/user/**").hasAnyAuthority("ROLE_ADMIN","ROLE_USER")
-	    		.anyRequest().permitAll();
+    @Autowired
+    private RequestFilter requestFilter;
 
-	    	
-	    httpSecurity.addFilterBefore(requestFilter,UsernamePasswordAuthenticationFilter.class);
-	}
-	
-	@Override
-	  public void configure(WebSecurity web) throws Exception {
-		  web
-		  .ignoring()
-		  .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
-	  }
+    @Override
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
+
+        httpSecurity.csrf().disable()
+                .authorizeRequests()
+                .anyRequest().permitAll();
+
+
+        httpSecurity.addFilterBefore(requestFilter, UsernamePasswordAuthenticationFilter.class);
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web
+                .ignoring()
+                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
+    }
 }
