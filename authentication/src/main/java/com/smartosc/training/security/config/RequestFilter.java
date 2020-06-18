@@ -40,7 +40,7 @@ public class RequestFilter extends OncePerRequestFilter {
 				chain.doFilter(request, response);
 				return;
 			} catch (IllegalArgumentException e) {
-				System.out.println("Unable to get JWT Token");
+				throw new IllegalArgumentException("Unable to get JWT Token");
 			}
 		} else if(request.getRequestURI().indexOf("authenticate")>0){
 			chain.doFilter(request, response);

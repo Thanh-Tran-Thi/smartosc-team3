@@ -103,6 +103,15 @@ public class UserApiTest {
 
     }
 
+    @Test
+    public void findUserByIdFail() throws Exception {
+        Long id = 1L;
+        lenient().when(userService.findUserById(id)).thenReturn(new UserDTO());
+        this.mockMvc.perform(get(url+"/{id}",id)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+    }
+
     //findAllUser
     @Test
     public void findAllUser() throws Exception {

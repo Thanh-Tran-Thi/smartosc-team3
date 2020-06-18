@@ -23,19 +23,15 @@ import org.hibernate.validator.constraints.NotEmpty;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserDTO extends AbstractDTO{
-    //@NotEmpty(message = "User name không dc để trống")
     @JsonProperty("username")
     private String username;
 
-    //@NotEmpty(message = "Password name không dc để trống")
     @JsonProperty("password")
     private String password;
 
-    //@NotEmpty(message = "Full name name không dc để trống")
     @JsonProperty("fullname")
     private String fullname;
 
-    //@NotEmpty(message = "Email name không dc để trống")
     @JsonProperty("email")
     private String email;
 }

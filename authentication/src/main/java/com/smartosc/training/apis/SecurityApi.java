@@ -5,6 +5,7 @@ import com.smartosc.training.dtos.APIResponse;
 import com.smartosc.training.dtos.request.JwtRequest;
 import com.smartosc.training.services.impls.JwtUserDetailServiceImpl;
 import com.smartosc.training.security.utils.JWTUtils;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,12 +35,11 @@ public class SecurityApi {
 	private JwtUserDetailServiceImpl userDetailsService;
 
 	@PostMapping(value = "/api/authenticate")
-	public ResponseEntity<?> createAuthenticationToken(@RequestBody @Valid JwtRequest authenticationRequest) throws Exception {
-
+	public ResponseEntity<Object> createAuthenticationToken(@RequestBody @Valid JwtRequest authenticationRequest)throws NotFoundException {
 		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
 		
 		if (!userDetails.isAccountNonLocked()) {
-			return new ResponseEntity(new APIResponse(HttpStatus.OK.value(), "this account has been locked"), HttpStatus.OK);
+			return new ResponseEntity(new APIResponse(HttpStatus.OK.value(), "this account has been locked"), HttpStatus.BAD_REQUEST);
 		}
 		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
@@ -48,11 +48,11 @@ public class SecurityApi {
 		return ResponseEntity.ok(token);
 	}
 
-	private void authenticate(String username, String password) throws Exception {
+	private void authenticate(String username, String password){
 		try {
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 		} catch (DisabledException e) {
-			throw new Exception("USER_DISABLED", e);
+			throw new DisabledException("USER_DISABLED", e);
 		} catch (BadCredentialsException e) {
 			throw new BadCredentialsException("INVALID_CREDENTIALS", e);
 		}

@@ -54,7 +54,6 @@ public class UserServiceTest {
     private UserRequest userRequest;
     private Role role;
 
-    private Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
     @BeforeEach
     public void setUp() {
@@ -84,9 +83,7 @@ public class UserServiceTest {
     //function findUserByUserName
     @Test
     public void findUserByUserNameSuccess() throws NotFoundException {
-        LOGGER.info("fake data for function findByUserName");
         lenient().when(userRepository.findByUserName("admin")).thenReturn(user);
-        LOGGER.info("fake data for modelMaper");
         lenient().when(modelMapper.map(user.get(), UserDTO.class)).thenReturn(userDTO);
 
         UserDTO userResult = userService.findUserByUserName("admin");
@@ -104,9 +101,7 @@ public class UserServiceTest {
     //function findAllUser
     @Test
     public void findAllUserSuccess() throws NotFoundException {
-        LOGGER.info("fake data for function findAllUser");
         lenient().when(userRepository.findAll()).thenReturn(userList);
-        LOGGER.info("fake data for modelMaper");
         lenient().when(modelMapper.map(user.get(), UserDTO.class)).thenReturn(userDTO);
 
         List<UserDTO> userDTOList = userService.findAllUser();
@@ -115,8 +110,7 @@ public class UserServiceTest {
 
     @Test
     public void findAllUserFalse() throws NotFoundException {
-        LOGGER.info("fake data for function findAllUser");
-        lenient().when(userRepository.findAll()).thenReturn(null);
+        lenient().when(userRepository.findAll()).thenReturn(new ArrayList<>());
 
         Assertions.assertThrows(NotFoundException.class,()->{
             userService.findAllUser();
@@ -126,7 +120,6 @@ public class UserServiceTest {
     //function createNewUser
     @Test
     public void createNewUserSuccess() throws NotFoundException {
-        LOGGER.info("fake data for function findByUserName");
         lenient().when(userRepository.findByUserName("admin")).thenReturn(Optional.empty());
         lenient().when(modelMapper.map(any(), any())).thenReturn(user.get()).thenReturn(userDTO);
         lenient().when(roleRepository.findByName("ROLE_USER")).thenReturn(role);
@@ -140,7 +133,6 @@ public class UserServiceTest {
 
     @Test
     public void createNewUserFalse() throws NotFoundException {
-        LOGGER.info("fake data for function findByUserName");
         lenient().when(userRepository.findByUserName("admin")).thenReturn(Optional.of(new User()));
 
         Assertions.assertThrows(DuplicateKeyException.class,()->{
@@ -151,7 +143,6 @@ public class UserServiceTest {
     //function updateUser
     @Test
     public void updateUserSuccess() throws NotFoundException {
-        LOGGER.info("fake data for function updateUser");
         lenient().when(userRepository.findById(user.get().getId())).thenReturn(user);
         lenient().when(modelMapper.map(any(), any())).thenReturn(userDTO).thenReturn(user.get());
         lenient().when(userRepository.save(user.get())).thenReturn(user.get());
@@ -163,7 +154,6 @@ public class UserServiceTest {
 
     @Test
     public void updateUserFalse() throws NotFoundException {
-        LOGGER.info("fake data for function updateUser");
         lenient().when(userRepository.findById(1L)).thenReturn(Optional.empty());
 
         Assertions.assertThrows(NotFoundException.class,()->{
@@ -175,7 +165,6 @@ public class UserServiceTest {
 
     @Test
     public void findUserByIdSuccess() throws NotFoundException {
-        LOGGER.info("fake data for function findUserById");
         lenient().when(userRepository.findById(1L)).thenReturn(user);
         lenient().when(modelMapper.map(any(), any())).thenReturn(userDTO);
 
@@ -186,7 +175,6 @@ public class UserServiceTest {
 
     @Test
     public void findUserByIdFalse() throws NotFoundException {
-        LOGGER.info("fake data for function findUserById");
         lenient().when(userRepository.findById(1L)).thenReturn(Optional.empty());
 
         Assertions.assertThrows(new NotFoundException("KHông tìm thấy dữ liệu").getClass(),()->{

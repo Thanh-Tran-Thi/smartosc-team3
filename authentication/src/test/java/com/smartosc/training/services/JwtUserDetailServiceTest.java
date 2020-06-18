@@ -86,7 +86,6 @@ public class JwtUserDetailServiceTest {
 
     @Test
     public void loadUserByUsernameFailsByNullData() throws NotFoundException {
-        userDTO.setStatus(0);
         LOGGER.info("fake data for function findUserByUserName");
         lenient().when(userService.findUserByUserName("admin")).thenThrow(UsernameNotFoundException.class);
         Assertions.assertThrows(UsernameNotFoundException.class,()->{

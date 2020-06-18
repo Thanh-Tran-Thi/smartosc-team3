@@ -4,6 +4,7 @@ import com.smartosc.training.dtos.RoleDTO;
 import com.smartosc.training.dtos.UserDTO;
 import com.smartosc.training.services.RoleService;
 import com.smartosc.training.services.UserService;
+import javassist.NotFoundException;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -32,7 +33,7 @@ public class JwtUserDetailServiceImpl implements UserDetailsService {
         UserDTO users = this.userService.findUserByUserName(userName);
 
         if (users == null || users.getStatus() == 0) {
-            throw new UsernameNotFoundException("User " + userName + " was not found in the database");
+            throw new NotFoundException("User " + userName + " was not found in the database");
         }
 
         List<GrantedAuthority> grantList = new ArrayList<>();
