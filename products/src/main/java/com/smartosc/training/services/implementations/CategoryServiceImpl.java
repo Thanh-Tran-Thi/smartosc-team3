@@ -10,6 +10,7 @@ import com.smartosc.training.exceptions.ProductDuplicateException;
 import com.smartosc.training.repositories.CategoryRepository;
 import com.smartosc.training.repositories.ProductRepository;
 import com.smartosc.training.services.CategoryService;
+import com.smartosc.training.untils.AppConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,8 @@ public class CategoryServiceImpl implements CategoryService {
     @Autowired
     ProductRepository productRepository;
 
+    String message = null;
+
     @Override
     public List<CategoryProductDTO> listAll() {
         List<Category> categories = categoryRepository.findAll();
@@ -61,7 +64,7 @@ public class CategoryServiceImpl implements CategoryService {
             categoryDTO.setDescription(category.getDescription());
             categoryDTOS.add(categoryDTO);
         }
-        LOGGER.info("Category Service: Get all category successfully");
+        LOGGER.info(AppConstants.GET_ALL_CATEGORIES_SUCCESSFULLY);
         return categoryDTOS;
     }
 
@@ -87,10 +90,11 @@ public class CategoryServiceImpl implements CategoryService {
             categoryDTO.setId(category.get().getId());
             categoryDTO.setDescription(category.get().getDescription());
         } else {
-            LOGGER.error("Category Service: Category is not existed");
-            throw new NullPointerException("Category is not existed");
+            LOGGER.error(AppConstants.NO_CATEGORY_AVAILABLE);
+            throw new NullPointerException(AppConstants.NO_CATEGORY_AVAILABLE);
         }
-        LOGGER.info("Category Service: Get category by id " + id +" successfully");
+        message = AppConstants.GET_CATEGORY_BY_ID_MESS + id + AppConstants.SUCCESS_MESS;
+        LOGGER.info(message);
         return categoryDTO;
     }
 
@@ -99,14 +103,16 @@ public class CategoryServiceImpl implements CategoryService {
         String name = categoryDTO.getName();
         Optional<Category> categoryOptional = categoryRepository.findByName(name);
         if (categoryOptional.isPresent()) {
-            LOGGER.error("Category Service: Can't update. Category with name " + categoryDTO.getName() + " not existed");
-            throw new ProductDuplicateException("Category with name " + categoryDTO.getName() + " already exists");
+            message = AppConstants.CAN_NOT_CREATE_CATEGORY.concat(categoryDTO.getName()).concat(AppConstants.EXISTS);
+            LOGGER.error(message);
+            throw new ProductDuplicateException(message);
         }
         Category category = new Category();
         category.setName(categoryDTO.getName());
         category.setDescription(categoryDTO.getDescription());
         categoryRepository.save(category);
-        LOGGER.info("Category Service: Create Category " + categoryDTO.toString() +" successfully");
+        message = AppConstants.CAN_CREATE_CATEGORY.concat(categoryDTO.toString()).concat(AppConstants.SUCCESS_MESS);
+        LOGGER.info(message);
         return categoryDTO;
     }
 
@@ -128,11 +134,13 @@ public class CategoryServiceImpl implements CategoryService {
             category1.setDescription(dto.getDescription());
             category1.setProducts(productList);
             categoryRepository.save(category1);
-            LOGGER.info("Category Service: Update Category " + dto.toString() +" successfully");
+            message = AppConstants.CAN_UPDATE_CATEGORY.concat(dto.toString()).concat(AppConstants.SUCCESS_MESS);
+            LOGGER.info(message);
             return dto;
         } else {
-            LOGGER.error("Category Service: Category with ID - " + dto.getId() + "not is existed. Can't update");
-            throw new CategoryNotFoundException("Not found. Category with ID - " + dto.getId() + "not is existed. Can't update");
+            message = AppConstants.CAN_NOT_UPDATE_CATEGORY + dto.getId() + AppConstants.NOT_EXIST;
+            LOGGER.error(message);
+            throw new CategoryNotFoundException(message);
         }
     }
 }
