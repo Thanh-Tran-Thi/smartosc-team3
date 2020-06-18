@@ -7,6 +7,7 @@ import com.smartosc.training.security.config.JWTAuthenticationEntryPoint;
 import com.smartosc.training.security.config.RequestFilter;
 import com.smartosc.training.security.utils.JWTUtils;
 import com.smartosc.training.services.impls.JwtUserDetailServiceImpl;
+import javassist.NotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -22,6 +23,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -32,6 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.lenient;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -68,6 +71,7 @@ public class SecurityApiTest {
 
     private UserDetails userDetails;
     private List<GrantedAuthority> grantList;
+    private String token;
     private JwtRequest jwtRequest;
 
     private Logger LOGGER = LoggerFactory.getLogger(this.getClass());
@@ -78,7 +82,7 @@ public class SecurityApiTest {
         this.grantList = new ArrayList<>();
         grantList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         this.userDetails = new User("admin", "1234", grantList);
-
+        this.token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU5MTg3ODYzNiwiaWF0IjoxNTkxODYwNjM2fQ.GUCNkvKEBY8aWW21y4dL98F13mc1GZHvyR1OABuBtDTnBP8tRaN25ro53jBmNGsr_QYPvZ3d1GeVuqjSoltfxQ";
         jwtRequest = new JwtRequest("admin", "1234");
 
         this.mockMvc = MockMvcBuilders.standaloneSetup(securityApi)
@@ -88,18 +92,18 @@ public class SecurityApiTest {
     @Test
     public void authentication() throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
-        lenient().when(userDetailsService.loadUserByUsername("admin")).thenReturn(this.userDetails);
+        lenient().when(userDetailsService.loadUserByUsername(any())).thenReturn(this.userDetails);
+        lenient().when(jwtTokenUtil.generateToken(any())).thenReturn(this.token);
         MvcResult token = this.mockMvc.perform(post("/api/authenticate")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(jwtRequest)))
                 .andExpect(status().isOk())
                 .andReturn();
-        LOGGER.info("hahahahahaahaa"+token.getResponse().getContentAsString());
     }
     @Test
     public void authenticationFails() throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
-        lenient().when(userDetailsService.loadUserByUsername("admin")).thenReturn(null);
+        lenient().when(userDetailsService.loadUserByUsername("user")).thenReturn(null);
         this.mockMvc.perform(post("/api/authenticate"))
                 .andExpect(status().isBadRequest());
     }

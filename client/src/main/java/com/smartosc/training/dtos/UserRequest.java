@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 /**
@@ -40,7 +41,7 @@ public class UserRequest extends AbstractDTO{
     @JsonProperty("fullname")
     private String fullname;
 
-    @NotEmpty(message = "Email không dc để trống")
+    @Email(message = "Email không đúng định dạng")
     @JsonProperty("email")
     private String email;
 }

@@ -29,7 +29,6 @@ class SwaggerConfig {
     @Bean
     public Docket api() {
         ApiInfo restAPIInfo = buildApiInfo(restAPI);
-        List<ResponseMessage> resp = buildGlobalResponses();
 
         ParameterBuilder aParameterBuilder = new ParameterBuilder();
         aParameterBuilder.name("Authorization").modelRef(new ModelRef("string")).parameterType("header").required(false).build();

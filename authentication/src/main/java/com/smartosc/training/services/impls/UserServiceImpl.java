@@ -41,9 +41,7 @@ public class UserServiceImpl implements UserService {
     public UserDTO findUserByUserName(String name) throws NotFoundException {
         Optional<User> userEntity = userRepository.findByUserName(name);
         if (userEntity.isPresent()) {
-            UserDTO dto = new UserDTO();
-            dto = modelMapper.map(userEntity.get(), UserDTO.class);
-            return dto;
+            return modelMapper.map(userEntity.get(), UserDTO.class);
         } else {
             throw new NotFoundException("UnAuthorized");
         }
@@ -54,7 +52,7 @@ public class UserServiceImpl implements UserService {
 
         List<UserDTO> results = new ArrayList<>();
         List<User> entities = userRepository.findAll();
-        if (entities != null) {
+        if (!entities.isEmpty()) {
             for (User item : entities) {
                 UserDTO newDTO = modelMapper.map(item, UserDTO.class);
                 results.add(newDTO);

@@ -12,6 +12,8 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.sql.SQLException;
+
 @Service
 public class RestServiceImpl implements RestTemplateService {
 	private static final Logger LOOGER = LoggerFactory.getLogger(RestServiceImpl.class);
@@ -27,8 +29,8 @@ public class RestServiceImpl implements RestTemplateService {
 			}
 			LOOGER.error(res.getBody().getMessage());
 			throw new RestTempalteException(res.getBody().getMessage());
-		} catch (Exception e) {
-			throw new RestTempalteException(e.getMessage().split("\"")[13]);
+		} catch (RestTempalteException e) {
+			throw new RestTempalteException(e.getMessage().split("\"")[9]);
 		}
 	}
 
