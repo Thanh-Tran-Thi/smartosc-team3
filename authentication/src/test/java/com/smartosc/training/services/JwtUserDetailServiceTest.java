@@ -50,13 +50,17 @@ public class JwtUserDetailServiceTest {
 
     private UserDTO userDTO;
     private List<RoleDTO> roleDTOList;
+    private RoleDTO roleDTO;
 
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         userDTO = new UserDTO("123", "123", "123", "123");
         userDTO.setStatus(1);
+
+        roleDTO = new RoleDTO("ROLE_USER");
         roleDTOList = new ArrayList<>();
+        roleDTOList.add(roleDTO);
     }
 
     @Test

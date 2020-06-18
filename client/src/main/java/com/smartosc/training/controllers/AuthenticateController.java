@@ -21,7 +21,7 @@ public class AuthenticateController {
     private AuthenticateServiceImpl userService;
     
     @PostMapping
-    public String createNewUser(@RequestBody JwtRequest model) throws MethodArgumentNotValidException {
+    public String getToken(@RequestBody JwtRequest model) throws MethodArgumentNotValidException {
         return userService.getToken(model);
     }
 
