@@ -2,7 +2,7 @@ package com.smartosc.training.controllers;
 
 import com.smartosc.training.dto.CategoryDTO;
 import com.smartosc.training.dto.CategoryProductDTO;
-import com.smartosc.training.entities.ApiResponse;
+import com.smartosc.training.dto.ApiResponse;
 import com.smartosc.training.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,35 +35,39 @@ public class CategoryController {
     private CategoryService service;
 
     @GetMapping
-    public ResponseEntity<?> getAll() {
+    public ResponseEntity<ApiResponse<List<CategoryProductDTO>>> getAll() {
         List<CategoryProductDTO> categories = new ArrayList<>();
         service.listAll().forEach(categories::add);
         if (categories.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(new ApiResponse<>(new Date(), categories), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse<>(new Date(),"Get all categories",
+                HttpStatus.OK.toString(), categories), HttpStatus.OK);
 
     }
 
     @GetMapping(value = "/{id}/products")
-    public ResponseEntity<?> getById(@PathVariable(name = "id") Long id) {
+    public ResponseEntity<ApiResponse<CategoryProductDTO>> getById(@PathVariable(name = "id") Long id) {
         CategoryProductDTO category = service.getById(id);
         if (category == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity<>(new ApiResponse<>(new Date(), category), HttpStatus.OK);
+            return new ResponseEntity<>(new ApiResponse<>(new Date(),"Get a category (with its list products) by ID - " + id,
+                    HttpStatus.OK.toString(), category), HttpStatus.OK);
         }
     }
 
     @PostMapping
-    public ResponseEntity<?> createNew(@Valid @RequestBody CategoryDTO category) {
+    public ResponseEntity<ApiResponse<CategoryDTO>> createNew(@Valid @RequestBody CategoryDTO category) {
         service.save(category);
-        return new ResponseEntity<>(new ApiResponse<>(new Date(), category), HttpStatus.CREATED);
+        return new ResponseEntity<>(new ApiResponse<>(new Date(),"Add new category",
+                HttpStatus.OK.toString(), category), HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<?> update(@RequestBody CategoryProductDTO input) {
+    public ResponseEntity<ApiResponse<CategoryProductDTO>> update(@RequestBody CategoryProductDTO input) {
         service.update(input);
-        return new ResponseEntity<>(new ApiResponse<>(new Date(), input), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse<>(new Date(),"Update a category" + input.toString(),
+                HttpStatus.OK.toString(), input), HttpStatus.OK);
     }
 }

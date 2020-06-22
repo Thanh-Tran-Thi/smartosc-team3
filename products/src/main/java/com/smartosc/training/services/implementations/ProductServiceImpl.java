@@ -76,7 +76,7 @@ public class ProductServiceImpl implements ProductService {
         if (!product.isPresent()) {
             message = AppConstants.GET_PRODUCT_BY_ID_MESS + id + AppConstants.NOT_EXIST;
             LOGGER.error(message);
-            throw new NullPointerException(message);
+            throw new ProductNotFoundException(message);
         }
         List<Category> categories = product.get().getCategories();
         List<CategoryDTO> categoryProductDTOS = new ArrayList<>();
