@@ -1,10 +1,15 @@
 package com.smartosc.training.exceptions;
 
+
+import com.smartosc.training.dtos.APIError;
+import com.smartosc.training.dtos.APIResponse;
+import javassist.NotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -24,6 +29,7 @@ import java.util.stream.Collectors;
  */
 @ControllerAdvice
 public class HandleError extends ResponseEntityExceptionHandler {
+
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException ex, HttpHeaders headers,
@@ -42,5 +48,14 @@ public class HandleError extends ResponseEntityExceptionHandler {
         body.put("errors", errors);
 
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = { NotFoundException.class })
+    public ResponseEntity<Object> notFoundException(Exception ex) {
+        APIError apiError = new APIError();
+        apiError.setStatus(HttpStatus.NOT_FOUND);
+        apiError.setError(ex.getMessage());
+        apiError.setMessage("");
+        return new ResponseEntity<>(apiError, HttpStatus.NOT_FOUND);
     }
 }
