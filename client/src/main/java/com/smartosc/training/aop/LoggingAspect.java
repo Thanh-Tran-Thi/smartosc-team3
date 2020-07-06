@@ -16,6 +16,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.CodeSignature;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Aspect
@@ -23,12 +24,26 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class LoggingAspect
 {
+    @Value("${application.repository.query-limit-warning-ms}")
+    private int executionLimitMs;
 	@Autowired
 	private ApiLogService apiLogService;
 
 	@Pointcut("within(com.smartosc.training..*)")
 	public void service() {
 	}
+
+    @Around("execution(* com.viettel.arpu.repository.*.*(..))")
+    public Object logExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
+        long start = System.currentTimeMillis();
+        Object proceed = joinPoint.proceed();
+        long executionTime = System.currentTimeMillis() - start;
+        String message = joinPoint.getSignature() + " exec in " + executionTime + " ms";
+        if (executionTime >= executionLimitMs) {
+            log.warn(message + " : SLOW QUERY");
+        }
+        return proceed;
+    }
 
 	@Around("service()")
 	public Object aroundServiceMethod(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {

@@ -36,7 +36,7 @@ public class CategoryServiceImpl implements CategoryService {
     private AuthenticateServiceImpl authenticateService;
 
     @Override
-    public List<CategoryDTO> listAll(String token) {
+    public List<CategoryDTO> listAll(String token) throws Exception {
         String url = preFixUrl.concat(categoryApi);
         HttpHeaders header = new HttpHeaders();
         header.setContentType(MediaType.APPLICATION_JSON);
@@ -45,7 +45,7 @@ public class CategoryServiceImpl implements CategoryService {
         return restService.getSomething(url, HttpMethod.GET, header, null, new ParameterizedTypeReference<APIResponse<List<CategoryDTO>>>() {});    }
 
     @Override
-    public CategoryDTO getCategoryById(Long id, String token) {
+    public CategoryDTO getCategoryById(Long id, String token) throws Exception {
         String url = preFixUrl.concat(categoryApi).concat("/" + id).concat("/products");
         HttpHeaders header = new HttpHeaders();
         header.setContentType(MediaType.APPLICATION_JSON);
@@ -54,7 +54,7 @@ public class CategoryServiceImpl implements CategoryService {
         return restService.getSomething(url, HttpMethod.GET, header, null, new ParameterizedTypeReference<APIResponse<CategoryDTO>>() {});    }
 
     @Override
-    public CategoryDTO saveCategory(CategoryDTO category, String token) {
+    public CategoryDTO saveCategory(CategoryDTO category, String token) throws Exception {
         String url = preFixUrl.concat(categoryApi);
         HttpHeaders header = new HttpHeaders();
         header.setContentType(MediaType.APPLICATION_JSON);

@@ -35,7 +35,7 @@ public class ProductServiceImpl implements ProductService {
     private AuthenticateServiceImpl authenticateService;
 
     @Override
-    public List<ProductDTO> getAll(String token) {
+    public List<ProductDTO> getAll(String token) throws Exception {
         String url = preFixUrl.concat(productApi);
         HttpHeaders header = new HttpHeaders();
         header.setContentType(MediaType.APPLICATION_JSON);
@@ -45,7 +45,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductDTO getById(Long id, String token) {
+    public ProductDTO getById(Long id, String token) throws Exception {
         String url = preFixUrl.concat(productApi).concat("/" + id);
         HttpHeaders header = new HttpHeaders();
         header.setContentType(MediaType.APPLICATION_JSON);
@@ -55,7 +55,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductDTO save(ProductDTO product, String token) {
+    public ProductDTO save(ProductDTO product, String token) throws Exception {
         String url = preFixUrl.concat(productApi);
         HttpHeaders header = new HttpHeaders();
         header.setContentType(MediaType.APPLICATION_JSON);
@@ -65,7 +65,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductDTO update(ProductDTO product, String token) {
+    public ProductDTO update(ProductDTO product, String token) throws Exception {
         String url = preFixUrl.concat(productApi);
         HttpHeaders header = new HttpHeaders();
         header.setContentType(MediaType.APPLICATION_JSON);
@@ -75,7 +75,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Boolean delete(Long id, String token) {
+    public Boolean delete(Long id, String token) throws Exception {
         String url = preFixUrl.concat(productApi).concat("/" + id);
         HttpHeaders header = new HttpHeaders();
         header.setContentType(MediaType.APPLICATION_JSON);

@@ -6,7 +6,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 
 public interface RestTemplateService {
-	public <T> T getSomething(String url, HttpMethod method, HttpHeaders headers, Object body, ParameterizedTypeReference<APIResponse<T>> reponseType);
+	public <T> T getSomething(String url, HttpMethod method, HttpHeaders headers, Object body, ParameterizedTypeReference<APIResponse<T>> reponseType) throws Exception;
 	public String getToken(String url, HttpMethod method, HttpHeaders headers, Object body);
 	public <T> APIResponse<T> exchangePaging(String url, HttpMethod method, HttpHeaders headers, Object body);
 }

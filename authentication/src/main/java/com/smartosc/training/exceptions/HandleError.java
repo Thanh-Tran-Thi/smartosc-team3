@@ -1,8 +1,10 @@
 package com.smartosc.training.exceptions;
 
 
+import com.smartosc.training.constants.SystemConstants;
 import com.smartosc.training.dtos.APIError;
 import com.smartosc.training.dtos.APIResponse;
+import com.smartosc.training.dtos.UserDTO;
 import javassist.NotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -50,7 +52,7 @@ public class HandleError extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(value = { NotFoundException.class })
+    @ExceptionHandler(value = { Exception.class })
     public ResponseEntity<Object> notFoundException(Exception ex) {
         APIError apiError = new APIError();
         apiError.setStatus(HttpStatus.NOT_FOUND);

@@ -2,16 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="34125905-f83c-45c9-ad8a-a3c760244986" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/dtos/APIError.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/com/smartosc/training/dtos/APIError.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/com/smartosc/training/controllers/TestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/resources/i18n/messages_en.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/resources/i18n/messages_fr.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/resources/i18n/messages_ja.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/resources/i18n/messages_vi.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/exceptions/HandleError.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/exceptions/HandleError.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/security/config/RequestFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/security/config/RequestFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/products/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/products/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/smartosc/training/aop/LoggingAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/smartosc/training/aop/LoggingAspect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/smartosc/training/config/AppConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/smartosc/training/config/AppConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/smartosc/training/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/smartosc/training/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/smartosc/training/exception/RestHandleException.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/smartosc/training/exception/RestHandleException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/smartosc/training/services/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/smartosc/training/services/CategoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/smartosc/training/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/smartosc/training/services/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/smartosc/training/services/RestTemplateService.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/smartosc/training/services/RestTemplateService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/smartosc/training/services/impls/CategoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/smartosc/training/services/impls/CategoryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/smartosc/training/services/impls/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/smartosc/training/services/impls/ProductServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/smartosc/training/services/impls/RestServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/smartosc/training/services/impls/RestServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/smartosc/training/services/impls/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/smartosc/training/services/impls/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +127,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../hanoi-java-fresher-proj/soap-demo" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -127,21 +135,21 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.smartosc.training.controllers" />
       <recent name="com.smartosc.training.dtos" />
       <recent name="com.smartosc.training.services.impls" />
       <recent name="com.smartosc.training.apis" />
       <recent name="com.smartosc.training.dtos.request" />
-      <recent name="com.smartosc.training.exception" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\PC\Documents\Github\smartosc-team3\client\src\main\resources" />
       <recent name="C:\Users\PC\Documents\Github\smartosc-team3\payment\src\main\java\com\smartosc\training\dtos" />
       <recent name="C:\Users\PC\Documents\Github\smartosc-team3\payment\src\main" />
       <recent name="C:\Users\PC\Documents\Github\smartosc-team3\authentication\src\main\java\com\smartosc\training\security" />
       <recent name="C:\Users\PC\Documents\Github\smartosc-team3\authentication\src\main\java\com\smartosc\training\repository" />
-      <recent name="C:\Users\PC\Documents\Github\smartosc-team3\authentication\src\main\java\com\smartosc\training\dto" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.AuthenticationApplication">
+  <component name="RunManager" selected="Spring Boot.ClientServiceApplication">
     <configuration name="ProductControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="products" />
       <useClassPathOnly />
@@ -298,7 +306,10 @@
       <workItem from="1592276779483" duration="511000" />
       <workItem from="1592479273151" duration="2596000" />
       <workItem from="1592532650859" duration="1416000" />
-      <workItem from="1593506942724" duration="4143000" />
+      <workItem from="1593506942724" duration="4696000" />
+      <workItem from="1593568817633" duration="14788000" />
+      <workItem from="1593758563649" duration="6322000" />
+      <workItem from="1594028727085" duration="377000" />
     </task>
     <servers />
   </component>
@@ -334,58 +345,62 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591341726407" />
-    <state x="740" y="278" key="FileChooserDialogImpl" timestamp="1593507009947">
+    <state width="729" height="466" key="DebuggerActiveHint" timestamp="1593602130437">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="278" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1593507009947" />
-    <state width="1877" height="392" key="GridCell.Tab.0.bottom" timestamp="1593513481269">
+    <state width="729" height="466" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1593602130437" />
+    <state x="740" y="278" key="FileChooserDialogImpl" timestamp="1594029057156">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="392" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1593513481269" />
-    <state width="1877" height="392" key="GridCell.Tab.0.center" timestamp="1593513481269">
+    <state x="740" y="278" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1594029057156" />
+    <state width="1877" height="392" key="GridCell.Tab.0.bottom" timestamp="1594028959594">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="392" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1593513481269" />
-    <state width="1877" height="392" key="GridCell.Tab.0.left" timestamp="1593513481269">
+    <state width="1877" height="392" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1594028959594" />
+    <state width="1877" height="392" key="GridCell.Tab.0.center" timestamp="1594028959593">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="392" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1593513481269" />
-    <state width="1877" height="392" key="GridCell.Tab.0.right" timestamp="1593513481269">
+    <state width="1877" height="392" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1594028959593" />
+    <state width="1877" height="392" key="GridCell.Tab.0.left" timestamp="1594028959593">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="392" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1593513481269" />
-    <state width="1877" height="392" key="GridCell.Tab.1.bottom" timestamp="1593513481269">
+    <state width="1877" height="392" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1594028959593" />
+    <state width="1877" height="392" key="GridCell.Tab.0.right" timestamp="1594028959593">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="392" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1593513481269" />
-    <state width="1877" height="392" key="GridCell.Tab.1.center" timestamp="1593513481269">
+    <state width="1877" height="392" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1594028959593" />
+    <state width="1877" height="392" key="GridCell.Tab.1.bottom" timestamp="1594028959594">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="392" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1593513481269" />
-    <state width="1877" height="392" key="GridCell.Tab.1.left" timestamp="1593513481269">
+    <state width="1877" height="392" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1594028959594" />
+    <state width="1877" height="392" key="GridCell.Tab.1.center" timestamp="1594028959594">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="392" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1593513481269" />
-    <state width="1877" height="392" key="GridCell.Tab.1.right" timestamp="1593513481269">
+    <state width="1877" height="392" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1594028959594" />
+    <state width="1877" height="392" key="GridCell.Tab.1.left" timestamp="1594028959594">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="392" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1593513481269" />
-    <state width="1877" height="348" key="GridCell.Tab.2.bottom" timestamp="1591611547455">
+    <state width="1877" height="392" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1594028959594" />
+    <state width="1877" height="392" key="GridCell.Tab.1.right" timestamp="1594028959594">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591611547455" />
-    <state width="1877" height="348" key="GridCell.Tab.2.center" timestamp="1591611547455">
+    <state width="1877" height="392" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1594028959594" />
+    <state width="1877" height="278" key="GridCell.Tab.2.bottom" timestamp="1593602940725">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591611547455" />
-    <state width="1877" height="348" key="GridCell.Tab.2.left" timestamp="1591611547455">
+    <state width="1877" height="278" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1593602940725" />
+    <state width="1877" height="278" key="GridCell.Tab.2.center" timestamp="1593602940725">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591611547455" />
-    <state width="1877" height="348" key="GridCell.Tab.2.right" timestamp="1591611547455">
+    <state width="1877" height="278" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1593602940725" />
+    <state width="1877" height="278" key="GridCell.Tab.2.left" timestamp="1593602940725">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591611547455" />
+    <state width="1877" height="278" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1593602940725" />
+    <state width="1877" height="278" key="GridCell.Tab.2.right" timestamp="1593602940725">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="278" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1593602940725" />
     <state x="540" y="258" width="1304" height="508" key="IDE.errors.dialog" timestamp="1591251871708">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -398,10 +413,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="463" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1593506977839" />
-    <state x="668" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1593506943622">
+    <state x="668" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1593568896437">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="668" y="347" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1593506943622" />
+    <state x="668" y="347" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1593568896437" />
+    <state x="342" y="224" key="new project wizard" timestamp="1593572047812">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="342" y="224" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1593572047812" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -450,6 +469,16 @@
           <url>file://$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/apis/SecurityApi.java</url>
           <line>47</line>
           <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/client/src/main/java/com/smartosc/training/services/impls/RestServiceImpl.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/authentication/src/main/java/com/smartosc/training/exceptions/HandleError.java</url>
+          <line>56</line>
+          <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

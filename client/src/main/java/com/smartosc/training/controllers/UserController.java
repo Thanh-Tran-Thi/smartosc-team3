@@ -5,6 +5,7 @@ import com.smartosc.training.dtos.UserDTO;
 import com.smartosc.training.dtos.UserRequest;
 import com.smartosc.training.services.impls.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -30,8 +31,8 @@ public class UserController {
     private UserServiceImpl userService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> findUserById(@PathVariable("id")Long id, @RequestHeader(value="Authorization") String token) {
-        return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(),"success" ,userService.findUserById(id, token)), HttpStatus.OK);
+    public ResponseEntity<?> findUserById(@PathVariable("id")Long id) {
+        return new ResponseEntity<>(new APIResponse<>(HttpStatus.OK.value(),"success" ,userService.findUserById(id)), HttpStatus.OK);
     }
 
     @GetMapping
