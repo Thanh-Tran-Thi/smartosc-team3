@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/authentication/authentication.iml" filepath="$PROJECT_DIR$/authentication/authentication.iml" />
       <module fileurl="file://$PROJECT_DIR$/client/payment.iml" filepath="$PROJECT_DIR$/client/payment.iml" />
       <module fileurl="file://$PROJECT_DIR$/products/products.iml" filepath="$PROJECT_DIR$/products/products.iml" />
+      <module fileurl="file://$PROJECT_DIR$/retry/retry.iml" filepath="$PROJECT_DIR$/retry/retry.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/smartosc_team3.iml" filepath="$PROJECT_DIR$/.idea/smartosc_team3.iml" />
     </modules>
   </component>

@@ -39,6 +39,7 @@
         <option value="$PROJECT_DIR$/payment/pom.xml" />
         <option value="$PROJECT_DIR$/products/pom.xml" />
         <option value="$PROJECT_DIR$/client/pom.xml" />
+        <option value="$PROJECT_DIR$/retry/pom.xml" />
       </list>
     </option>
   </component>

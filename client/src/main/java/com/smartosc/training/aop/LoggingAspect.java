@@ -33,18 +33,6 @@ public class LoggingAspect
 	public void service() {
 	}
 
-    @Around("execution(* com.viettel.arpu.repository.*.*(..))")
-    public Object logExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
-        long start = System.currentTimeMillis();
-        Object proceed = joinPoint.proceed();
-        long executionTime = System.currentTimeMillis() - start;
-        String message = joinPoint.getSignature() + " exec in " + executionTime + " ms";
-        if (executionTime >= executionLimitMs) {
-            log.warn(message + " : SLOW QUERY");
-        }
-        return proceed;
-    }
-
 	@Around("service()")
 	public Object aroundServiceMethod(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
 		Object result = proceedingJoinPoint.proceed();

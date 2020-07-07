@@ -1,0 +1,33 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://example.com"
+           targetNamespace="http://example.com" elementFormDefault="qualified">
+    
+    <xs:element name="calculationRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="a">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:pattern value="[0-9]+"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="b">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:pattern value="[0-9]+"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="calculationResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="total" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+</xs:schema>
